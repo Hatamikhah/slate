@@ -384,7 +384,10 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 <h1 id='backend'>لیست سرویس های Backend</h1><h2 id='create-wallet'>تراکنش ساخت کیف رمز پول (Create Wallet)</h2>
-<p>جهت ساخت کیف رمز پول تابع CreateWallet با نوع Submit فراخوانی می‌شود. قالب تراکنش ارسالی از سمت Backend به شبکه برنا، به صورت یک رشته JSON می‌باشد. </p>
+<p>جهت ساخت کیف رمز پول تابع CreateWallet با نوع Submit فراخوانی می‌شود. قالب تراکنش ارسالی از سمت Backend به شبکه برنا، به صورت یک رشته JSON می‌باشد. داده دریافتی از سمت کاربر در قالب userPayload برای قرارداد هوشمند ارسال می‌گردد. این قالب دارای سه فیلد می‌باشد:
+userPayload.data: این فیلد داده‌های ارسالی کاربر را شامل می‌شود.
+userPayload.cert: گواهی دیجیتال کاربر در این فیلد قرار می‌گیرد.
+userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخیره می‌گردد. نرم افزار همراه، فیلد userPayload.data را به رشته متنی تبدیل نموده و پس از امضا رشته حاصل را در این فیلد ذخیره می‌نماید.</p>
 <div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">CreateWallet</span> <span class="n">createWallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CreateWallet</span><span class="o">()</span>
             <span class="o">.</span><span class="na">setMobileNo</span><span class="o">(</span><span class="n">mobileNo</span><span class="o">)</span>
             <span class="o">.</span><span class="na">setIdentificationNumber</span><span class="o">(</span><span class="n">identification</span><span class="o">)</span>
