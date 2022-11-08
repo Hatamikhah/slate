@@ -383,21 +383,21 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
-<h1 id='agent'>لیست سرویس های Agent</h1><h2 id='create-wallet'>تراکنش ساخت کیف رمز پول (Create Wallet)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>CreateWallet createWallet <span class="o">=</span> new CreateWallet<span class="o">()</span>
-            .setMobileNo<span class="o">(</span>mobileNo<span class="o">)</span>
-            .setIdentificationNumber<span class="o">(</span>identification<span class="o">)</span>
-            .setIdentificationType<span class="o">(</span>nationalCode<span class="o">)</span><span class="p">;</span>
+<h1 id='agent'>لیست سرویس های Agent</h1><h2 id='create-wallet'>تراکنش ساخت کیف رمز پول (Create Wallet)</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">CreateWallet</span> <span class="n">createWallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CreateWallet</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">setMobileNo</span><span class="o">(</span><span class="n">mobileNo</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setIdentificationNumber</span><span class="o">(</span><span class="n">identification</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setIdentificationType</span><span class="o">(</span><span class="n">nationalCode</span><span class="o">);</span>
 
-String createWalletStr <span class="o">=</span> writeValueAsString<span class="o">(</span>createWallet<span class="o">)</span><span class="p">;</span>
-String certificate <span class="o">=</span> writeValueAsString<span class="o">(</span>certificate<span class="o">)</span><span class="p">;</span>
-String sign <span class="o">=</span> sign<span class="o">(</span>createWalletStr<span class="o">)</span><span class="p">;</span>
+<span class="nc">String</span> <span class="n">createWalletStr</span> <span class="o">=</span> <span class="n">writeValueAsString</span><span class="o">(</span><span class="n">createWallet</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">certificate</span> <span class="o">=</span> <span class="n">writeValueAsString</span><span class="o">(</span><span class="n">certificate</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">sign</span> <span class="o">=</span> <span class="n">sign</span><span class="o">(</span><span class="n">createWalletStr</span><span class="o">);</span>
 
-UserPayload userPayload <span class="o">=</span> new UserPayload<span class="o">()</span>
-            .setData<span class="o">(</span>createWalletStr<span class="o">)</span>
-            .setCert<span class="o">(</span>certificate<span class="o">)</span>
-            .setSign<span class="o">(</span>sign<span class="o">))</span><span class="p">;</span>
+<span class="nc">UserPayload</span> <span class="n">userPayload</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserPayload</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="n">createWalletStr</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setCert</span><span class="o">(</span><span class="n">certificate</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setSign</span><span class="o">(</span><span class="n">sign</span><span class="o">));</span>
 
-String userPayloadStr <span class="o">=</span> writeValueAsString<span class="o">(</span>userPayload<span class="o">)</span><span class="p">;</span>
+<span class="nc">String</span> <span class="n">userPayloadStr</span> <span class="o">=</span> <span class="n">writeValueAsString</span><span class="o">(</span><span class="n">userPayload</span><span class="o">);</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured as String like this:</p>
