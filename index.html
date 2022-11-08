@@ -322,7 +322,7 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#agent" class="toc-h1 toc-link" data-title="لیست سرویس های Agent">لیست سرویس های Agent</a>
+            <a href="#backend" class="toc-h1 toc-link" data-title="لیست سرویس های Backend">لیست سرویس های Backend</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#create-wallet" class="toc-h2 toc-link" data-title="تراکنش ساخت کیف رمز پول (Create Wallet)">تراکنش ساخت کیف رمز پول (Create Wallet)</a>
@@ -383,7 +383,9 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
-<h1 id='agent'>لیست سرویس های Agent</h1><h2 id='create-wallet'>تراکنش ساخت کیف رمز پول (Create Wallet)</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">CreateWallet</span> <span class="n">createWallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CreateWallet</span><span class="o">()</span>
+<h1 id='backend'>لیست سرویس های Backend</h1><h2 id='create-wallet'>تراکنش ساخت کیف رمز پول (Create Wallet)</h2>
+<p>جهت ساخت کیف رمز پول تابع CreateWallet با نوع Submit فراخوانی می‌شود. قالب تراکنش ارسالی از سمت Backend به شبکه برنا، به صورت یک رشته JSON می‌باشد. </p>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">CreateWallet</span> <span class="n">createWallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CreateWallet</span><span class="o">()</span>
             <span class="o">.</span><span class="na">setMobileNo</span><span class="o">(</span><span class="n">mobileNo</span><span class="o">)</span>
             <span class="o">.</span><span class="na">setIdentificationNumber</span><span class="o">(</span><span class="n">identification</span><span class="o">)</span>
             <span class="o">.</span><span class="na">setIdentificationType</span><span class="o">(</span><span class="n">nationalCode</span><span class="o">);</span>
