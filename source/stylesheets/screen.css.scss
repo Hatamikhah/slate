@@ -55,9 +55,10 @@ html, body {
   position: fixed;
   z-index: 30;
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
   width: $nav-width;
+  direction: rtl;
   background-color: $nav-bg;
   font-size: 13px;
   font-weight: bold;
@@ -248,7 +249,7 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 
 .page-wrapper {
-  margin-left: $nav-width;
+  margin-right: $nav-width;
   position: relative;
   z-index: 10;
   background-color: $main-bg;
@@ -265,7 +266,7 @@ html, body {
     width: $examples-width;
     background-color: $examples-bg;
     position: absolute;
-    right: 0;
+    left: 0;
     top: 0;
     bottom: 0;
   }
@@ -328,7 +329,7 @@ html, body {
   }
 
   &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
-    margin-right: $examples-width;
+    margin-left: $examples-width;
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
@@ -479,21 +480,21 @@ html, body {
     }
   }
 
-  aside:before {
+  aside:after {
     vertical-align: middle;
     padding-right: 0.5em;
     font-size: 14px;
   }
 
-  aside.notice:before {
+  aside.notice:after {
     @extend %icon-info-sign;
   }
 
-  aside.warning:before {
+  aside.warning:after {
     @extend %icon-exclamation-sign;
   }
 
-  aside.success:before {
+  aside.success:after {
     @extend %icon-ok-sign;
   }
 
@@ -523,8 +524,7 @@ html, body {
     margin: 0;
     width: $examples-width;
 
-    float:right;
-    clear:right;
+
 
     box-sizing: border-box;
 
@@ -617,8 +617,11 @@ html, body {
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+  width: $examples-width;
 }
-
+pre.highlight{
+  width: 100%;
+}
 .copy-clipboard {
   float: right;
   fill: #9DAAB6;
@@ -630,4 +633,8 @@ html, body {
 
 .copy-clipboard:hover {
   opacity: 0.8;
+}
+p, h1, h2, h3, aside, table, td, tr, th {
+  direction: rtl;
+  text-align: right !important;
 }
