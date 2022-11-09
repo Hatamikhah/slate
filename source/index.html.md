@@ -73,7 +73,15 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 # لیست سرویس های Agent 
 
-## تراکنش ساخت کیف رمز پول (Create Wallet) 
+قالب تراکنش ارسالی از سمت Backend به شبکه برنا، به صورت یک رشته JSON می‌باشد. داده دریافتی از سمت کاربر در قالب userPayload برای قرارداد هوشمند ارسال می‌گردد. این قالب دارای سه فیلد می‌باشد:
+
+**userPayload.data:** این فیلد داده‌های ارسالی کاربر را شامل می‌شود.
+
+**userPayload.data:** گواهی دیجیتال کاربر در این فیلد قرار می‌گیرد.
+
+**userPayload.sign:** امضا دیجیتال کاربر در این فیلد ذخیره می‌گردد. نرم افزار همراه، فیلد userPayload.data را به رشته متنی تبدیل نموده و پس از امضا رشته حاصل را در این فیلد ذخیره می‌نماید.
+
+## تراکنش ساخت کیف رمز پول 
 
 ```java
 CreateWallet createWallet = new CreateWallet()
@@ -99,14 +107,7 @@ String userPayloadStr = writeValueAsString(userPayload);
 {"data":"{\"mobileNo\":\"شماره موبایل\",\"identificationNumber\":\"شناسه هویتی\",\"identificationType\":\"نوع شناسه هویتی\"}","sign":"امضا دیجیتال کاربر بر روی فیلد دیتا","cert":"گواهی دیجیتال کاربر"}
 ```
 
-جهت ساخت کیف رمز پول تابع CreateWallet با نوع Submit فراخوانی می‌شود. قالب تراکنش ارسالی از سمت Backend به شبکه برنا، به صورت یک رشته JSON می‌باشد. داده دریافتی از سمت کاربر در قالب userPayload برای قرارداد هوشمند ارسال می‌گردد. این قالب دارای سه فیلد می‌باشد:
-
-userPayload.data: این فیلد داده‌های ارسالی کاربر را شامل می‌شود.
-
-userPayload.data: گواهی دیجیتال کاربر در این فیلد قرار می‌گیرد.
-
-userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخیره می‌گردد. نرم افزار همراه، فیلد userPayload.data را به رشته متنی تبدیل نموده و پس از امضا رشته حاصل را در این فیلد ذخیره می‌نماید.
-
+جهت ساخت کیف رمز پول تابع CreateWallet با نوع Submit فراخوانی می‌شود. 
 ### HTTP Request
 
 `GET http://example.com/api/kittens`
