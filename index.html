@@ -399,7 +399,12 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
             <span class="o">.</span><span class="na">setIdentificationType</span><span class="o">(</span><span class="n">nationalCode</span><span class="o">);</span>
 
 <span class="nc">String</span> <span class="n">createWalletUPStr</span> <span class="o">=</span> <span class="n">writeValueAsString</span><span class="o">(</span><span class="n">createWalletUP</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">certificate</span> <span class="o">=</span> <span class="n">writeValueAsString</span><span class="o">(</span><span class="n">certificate</span><span class="o">);</span>
+</code></pre></div>
+<blockquote>
+<p>قطعه کد فوق خروجی زیر را به عنوان مقدار کیف رمز پول <strong>کاربر</strong> بصورت String در بر خواهد داشت:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"mobileNo"</span><span class="p">:</span><span class="s2">"شماره موبایل"</span><span class="p">,</span><span class="nl">"identificationNumber"</span><span class="p">:</span><span class="s2">"شناسه هویتی"</span><span class="p">,</span><span class="nl">"identificationType"</span><span class="p">:</span><span class="s2">"نوع شناسه هویتی"</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">String</span> <span class="n">certificate</span> <span class="o">=</span> <span class="n">writeValueAsString</span><span class="o">(</span><span class="n">certificate</span><span class="o">);</span>
 <span class="nc">String</span> <span class="n">sign</span> <span class="o">=</span> <span class="n">sign</span><span class="o">(</span><span class="n">createWalletUPStr</span><span class="o">);</span>
 
 <span class="nc">UserPayload</span> <span class="n">userPayload</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserPayload</span><span class="o">()</span>
@@ -463,8 +468,12 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
             <span class="o">.</span><span class="na">setAttributes</span><span class="o">(</span><span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;());</span>
 
 <span class="nc">String</span> <span class="n">createWalletSPStr</span> <span class="o">=</span> <span class="n">writeValueAsString</span><span class="o">(</span><span class="n">createWalletSP</span><span class="o">);</span>
-
-<span class="nc">ServerPayload</span> <span class="n">serverPayload</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServerPayload</span><span class="o">()</span>
+</code></pre></div>
+<blockquote>
+<p>قطعه کد فوق خروجی زیر را به عنوان مقدار کیف رمز پول <strong>backend</strong> بصورت String در بر خواهد داشت:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"mobileNo"</span><span class="p">:</span><span class="s2">"شماره موبایل"</span><span class="p">,</span><span class="nl">"identificationNumber"</span><span class="p">:</span><span class="s2">"شناسه هویتی"</span><span class="p">,</span><span class="nl">"identificationType"</span><span class="p">:</span><span class="s2">"نوع شناسه هویتی"</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">ServerPayload</span> <span class="n">serverPayload</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServerPayload</span><span class="o">()</span>
             <span class="o">.</span><span class="na">setUserPayload</span><span class="o">(</span><span class="n">userPayloadStr</span><span class="o">)</span>
             <span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="n">createWalletSPStr</span><span class="o">);</span>
 
@@ -548,6 +557,8 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>رشته کاراکتری</td>
 </tr>
 </tbody></table>
+
+<p>testt</p>
 
 <p>test</p>
 <h3 id='http-request'>HTTP Request</h3>
