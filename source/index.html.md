@@ -92,6 +92,13 @@ CreateWallet createWalletUP = new CreateWalletUP()
 			.setIdentificationType(nationalCode);
 
 String createWalletUPStr = writeValueAsString(createWalletUP);
+```
+> قطعه کد فوق خروجی زیر را به عنوان مقدار کیف رمز پول **کاربر** بصورت String در بر خواهد داشت:
+
+```json
+{"mobileNo":"شماره موبایل","identificationNumber":"شناسه هویتی","identificationType":"نوع شناسه هویتی"}
+```
+```java
 String certificate = writeValueAsString(certificate);
 String sign = sign(createWalletUPStr);
 
@@ -131,7 +138,13 @@ CreateWalletSP createWalletSP = new CreateWalletSP()
 			.setAttributes(new ArrayList<>());
 
 String createWalletSPStr = writeValueAsString(createWalletSP);
+```
+> قطعه کد فوق خروجی زیر را به عنوان مقدار کیف رمز پول **backend** بصورت String در بر خواهد داشت:
 
+```json
+{"mobileNo":"شماره موبایل","identificationNumber":"شناسه هویتی","identificationType":"نوع شناسه هویتی"}
+```
+```java
 ServerPayload serverPayload = new ServerPayload()
 			.setUserPayload(userPayloadStr)
 			.setData(createWalletSPStr);
@@ -159,7 +172,11 @@ String serverPayloadStr = writeValueAsString(serverPayload);
 
 
 
+testt
+
 test
+
+
 
 ### HTTP Request
 
