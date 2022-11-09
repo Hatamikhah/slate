@@ -80,49 +80,33 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 **userPayload.data:** گواهی دیجیتال کاربر در این فیلد قرار می‌گیرد.
 
 **userPayload.sign:** امضا دیجیتال کاربر در این فیلد ذخیره می‌گردد. نرم افزار همراه، فیلد userPayload.data را به رشته متنی تبدیل نموده و پس از امضا رشته حاصل را در این فیلد ذخیره می‌نماید.
-
 ## تراکنش ساخت کیف رمز پول 
 
+
+جهت ساخت کیف رمز پول تابع CreateWallet با نوع Submit فراخوانی می‌شود.
+
 ```java
-CreateWallet createWallet = new CreateWallet()
+CreateWallet createWalletUP = new CreateWalletUP()
 			.setMobileNo(mobileNo)
 			.setIdentificationNumber(identification)
 			.setIdentificationType(nationalCode);
 
-String createWalletStr = writeValueAsString(createWallet);
+String createWalletUPStr = writeValueAsString(createWalletUP);
 String certificate = writeValueAsString(certificate);
-String sign = sign(createWalletStr);
+String sign = sign(createWalletUPStr);
 
 UserPayload userPayload = new UserPayload()
-			.setData(createWalletStr)
+			.setData(createWalletUPStr)
 			.setCert(certificate)
 			.setSign(sign));
 
 String userPayloadStr = writeValueAsString(userPayload);
 ```
-
 > قطعه کد فوق خروجی زیر را به عنوان مقدار userPayloadStr بصورت String در بر خواهد داشت:
 
 ```json
 {"data":"{\"mobileNo\":\"شماره موبایل\",\"identificationNumber\":\"شناسه هویتی\",\"identificationType\":\"نوع شناسه هویتی\"}","sign":"امضا دیجیتال کاربر بر روی فیلد دیتا","cert":"گواهی دیجیتال کاربر"}
 ```
-
-جهت ساخت کیف رمز پول تابع CreateWallet با نوع Submit فراخوانی می‌شود.
-
-###مشخصه‌های تراکنش ساخت کیف رمز پول - serverPayload.date 
-
-    ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
---------- | ------- | -----------| ------- | -----------| ------- 
-1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری 
-2 | walletType | اجباری | نوع کیف رمز پول | رشته کاراکتری 
-3 | enrollmentID | اجباری | کد ملی کاربر، شماره پاسپورت اتباع خارجی | رشته کاراکتری 
-4 | state | اختیاری | وضعیت کیف رمز پول | رشته کاراکتری 
-5 | attributes | اختیاری | لیستی از ویژگی‌هاکه بر روی کیف رمز پول تعریف می‌شود | رشته کاراکتری 
-6 | accountNumber | اجباری | شماره شبا کاربر | رشته کاراکتری 
-7 | bankID | اجباری | شناسه بانک سازنده | رشته کاراکتری 
-8 | certificates | اجباری | لیست گواهی‌های دیجیتال کاربر | رشته کاراکتری 
-9 | description | اختیاری | توضیحات | رشته کاراکتری 
-10 | bornaTxID | اختیاری | شناسه تراکنش در دفتر کل برنا | رشته کاراکتری
 
 ###مشخصه‌های تراکنش ساخت کیف رمز پول - userPayload.date 
 
@@ -133,6 +117,47 @@ String userPayloadStr = writeValueAsString(userPayload);
 3 | identificationType | اجباری | کد ملی کاربر، شماره پاسپورت اتباع خارجی | نوع شناسه هویتی 
 4 | accountNumber | اختیاری | شماره حساب (شبا) | رشته 24 کاراکتری 
  
+###مشخصه‌های تراکنش ساخت کیف رمز پول - serverPayload.date 
+
+```java
+CreateWalletSP createWalletSP = new CreateWalletSP()
+			.setWalletId(walletId)
+			.setWalletType(walletType)
+			.setEnrollmentId(identification)
+			.setState(NORMAL)
+			.setBankId(bankId)
+			.setDescription(description)
+			.setCertificates(List.of(writeValueAsString(certificate)))
+			.setAttributes(new ArrayList<>());
+
+String createWalletSPStr = writeValueAsString(createWalletSP);
+
+ServerPayload serverPayload = new ServerPayload()
+			.setUserPayload(userPayloadStr)
+			.setData(createWalletSPStr);
+
+String serverPayloadStr = writeValueAsString(serverPayload);
+```
+
+> قطعه کد فوق خروجی زیر را به عنوان مقدار serverPayloadStr بصورت String در بر خواهد داشت:
+
+```json
+{"userPayload":"{\"data\":\"{\\\"شماره موبایل\\\":\\\"5440629902\\\",\\\"identificationNumber\\\":\\\"شناسه هویتی\\\",\\\"identificationType\\\":\\\"نوع شناسه هویتی\\\"}\",\"sign\":\"امضا دیجیتال کاربر بر روی فیلد دیتا\",\"cert\":\"گواهی دیجیتال کاربر\"}","data":"{\"walletType\":\"نوع کیف رمز پول\",\"state\":\"وضعیت کیف رمز پول\",\"description\":\"توضیحات\",\"certificates\":[\"لیست گواهی‌های دیجیتال کاربر\"],\"attributes\":[\"لیستی از ویژگی‌ها که بر روی کیف رمز پول تعریف می‌شود\"],\"walletID\":\"شناسه کیف رمز پول\",\"enrollmentID\":\"کد ملی کاربر، شماره پاسپورت اتباع خارجی\",\"bankID\":\"شناسه بانک سازنده\"}"}
+```
+
+    ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
+--------- | ------- | -----------| ------- | -----------| ------- 
+1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری 
+2 | walletType | اجباری | نوع کیف رمز پول | رشته کاراکتری 
+3 | enrollmentID | اجباری | کد ملی کاربر، شماره پاسپورت اتباع خارجی | رشته کاراکتری 
+4 | state | اختیاری | وضعیت کیف رمز پول | رشته کاراکتری 
+5 | attributes | اختیاری | لیستی از ویژگی‌هاکه بر روی کیف رمز پول تعریف می‌شود | رشته کاراکتری 
+6 | bankID | اجباری | شناسه بانک سازنده | رشته کاراکتری 
+7 | certificates | اجباری | لیست گواهی‌های دیجیتال کاربر | رشته کاراکتری 
+8 | description | اختیاری | توضیحات | رشته کاراکتری 
+9 | bornaTxID | اختیاری | شناسه تراکنش در دفتر کل برنا | رشته کاراکتری
+
+
 ### HTTP Request
 
 `GET http://example.com/api/kittens`
