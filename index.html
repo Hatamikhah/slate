@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html>
+<html lang="fa">
   <head>
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
@@ -286,7 +286,7 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-50f0945e.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-0a9bac89.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-b12a2749.js"></script>
 
@@ -322,7 +322,7 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#backend" class="toc-h1 toc-link" data-title="لیست سرویس های Backend">لیست سرویس های Backend</a>
+            <a href="#agent" class="toc-h1 toc-link" data-title="لیست سرویس های Agent">لیست سرویس های Agent</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#create-wallet" class="toc-h2 toc-link" data-title="تراکنش ساخت کیف رمز پول (Create Wallet)">تراکنش ساخت کیف رمز پول (Create Wallet)</a>
@@ -383,15 +383,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
-<h1 id='backend'>لیست سرویس های Backend</h1><h2 id='create-wallet'>تراکنش ساخت کیف رمز پول (Create Wallet)</h2>
-<p>جهت ساخت کیف رمز پول تابع CreateWallet با نوع Submit فراخوانی می‌شود. قالب تراکنش ارسالی از سمت Backend به شبکه برنا، به صورت یک رشته JSON می‌باشد. داده دریافتی از سمت کاربر در قالب userPayload برای قرارداد هوشمند ارسال می‌گردد. این قالب دارای سه فیلد می‌باشد:</p>
-
-<p>userPayload.data: این فیلد داده‌های ارسالی کاربر را شامل می‌شود.</p>
-
-<p>userPayload.data: گواهی دیجیتال کاربر در این فیلد قرار می‌گیرد.</p>
-
-<p>userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخیره می‌گردد. نرم افزار همراه، فیلد userPayload.data را به رشته متنی تبدیل نموده و پس از امضا رشته حاصل را در این فیلد ذخیره می‌نماید.</p>
-<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">CreateWallet</span> <span class="n">createWallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CreateWallet</span><span class="o">()</span>
+<h1 id='agent'>لیست سرویس های Agent</h1><h2 id='create-wallet'>تراکنش ساخت کیف رمز پول (Create Wallet)</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">CreateWallet</span> <span class="n">createWallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CreateWallet</span><span class="o">()</span>
             <span class="o">.</span><span class="na">setMobileNo</span><span class="o">(</span><span class="n">mobileNo</span><span class="o">)</span>
             <span class="o">.</span><span class="na">setIdentificationNumber</span><span class="o">(</span><span class="n">identification</span><span class="o">)</span>
             <span class="o">.</span><span class="na">setIdentificationType</span><span class="o">(</span><span class="n">nationalCode</span><span class="o">);</span>
