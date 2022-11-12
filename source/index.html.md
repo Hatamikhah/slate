@@ -181,7 +181,6 @@ String serverPayloadStr = writeValueAsString(serverPayload);
 
 ### HTTP Request
 
-test
 `GET http://example.com/api/kittens`
 
 ### Query Parameters
