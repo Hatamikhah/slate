@@ -82,11 +82,13 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 **userPayload.sign:** امضا دیجیتال کاربر در این فیلد ذخیره می‌گردد. نرم افزار همراه، فیلد userPayload.data را به رشته متنی تبدیل نموده و پس از امضا رشته حاصل را در این فیلد ذخیره می‌نماید.
 ## تراکنش ساخت کیف رمز پول 
 
-
 جهت ساخت کیف رمز پول تابع CreateWallet با نوع Submit فراخوانی می‌شود.
 
+> **ساخت کیف رمز پول کاربر:**
+
 ```java
-CreateWallet createWalletUP = new CreateWalletUP()
+
+CreateWalletUP createWalletUP = new CreateWalletUP()
 			.setMobileNo(mobileNo)
 			.setIdentificationNumber(identification)
 			.setIdentificationType(nationalCode);
@@ -98,7 +100,10 @@ String createWalletUPStr = writeValueAsString(createWalletUP);
 ```json
 {"mobileNo":"شماره موبایل","identificationNumber":"شناسه هویتی","identificationType":"نوع شناسه هویتی"}
 ```
+> **ساخت userPayload:**
+
 ```java
+
 String certificate = writeValueAsString(certificate);
 String sign = sign(createWalletUPStr);
 
@@ -124,9 +129,10 @@ String userPayloadStr = writeValueAsString(userPayload);
 3 | identificationType | اجباری | کد ملی کاربر، شماره پاسپورت اتباع خارجی | نوع شناسه هویتی 
 4 | accountNumber | اختیاری | شماره حساب (شبا) | رشته 24 کاراکتری 
  
-###مشخصه‌های تراکنش ساخت کیف رمز پول - serverPayload.date 
+> **ساخت کیف رمز پول سرور:**
 
 ```java
+
 CreateWalletSP createWalletSP = new CreateWalletSP()
 			.setWalletId(walletId)
 			.setWalletType(walletType)
@@ -144,7 +150,10 @@ String createWalletSPStr = writeValueAsString(createWalletSP);
 ```json
 {"mobileNo":"شماره موبایل","identificationNumber":"شناسه هویتی","identificationType":"نوع شناسه هویتی"}
 ```
+> **ساخت serverPayload:**
+
 ```java
+
 ServerPayload serverPayload = new ServerPayload()
 			.setUserPayload(userPayloadStr)
 			.setData(createWalletSPStr);
@@ -157,7 +166,7 @@ String serverPayloadStr = writeValueAsString(serverPayload);
 ```json
 {"userPayload":"{\"data\":\"{\\\"mobileNo\\\":\\\"شماره موبایل\\\",\\\"identificationNumber\\\":\\\"شناسه هویتی\\\",\\\"identificationType\\\":\\\"نوع شناسه هویتی\\\"}\",\"sign\":\"امضا دیجیتال کاربر بر روی فیلد دیتا\",\"cert\":\"گواهی دیجیتال کاربر\"}","data":"{\"walletType\":\"نوع کیف رمز پول\",\"state\":\"وضعیت کیف رمز پول\",\"description\":\"توضیحات\",\"certificates\":[\"لیست گواهی‌های دیجیتال کاربر\"],\"attributes\":[\"لیستی از ویژگی‌ها که بر روی کیف رمز پول تعریف می‌شود\"],\"walletID\":\"شناسه کیف رمز پول\",\"enrollmentID\":\"کد ملی کاربر، شماره پاسپورت اتباع خارجی\",\"bankID\":\"شناسه بانک سازنده\"}"}
 ```
-
+###مشخصه‌های تراکنش ساخت کیف رمز پول - serverPayload.date 
     ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
 --------- | ------- | -----------| ------- | -----------| ------- 
 1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری 
@@ -170,16 +179,9 @@ String serverPayloadStr = writeValueAsString(serverPayload);
 8 | description | اختیاری | توضیحات | رشته کاراکتری 
 9 | bornaTxID | اختیاری | شناسه تراکنش در دفتر کل برنا | رشته کاراکتری
 
-
-
-testt
-
-test
-
-
-
 ### HTTP Request
 
+test
 `GET http://example.com/api/kittens`
 
 ### Query Parameters
