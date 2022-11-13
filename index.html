@@ -365,9 +365,9 @@
 <h2 id='3f605fa2be'>تراکنش ساخت کیف رمز پول</h2>
 <p>جهت ساخت کیف رمز پول تابع CreateWallet با نوع Submit فراخوانی می‌شود.</p>
 
-<p><aside class="content">
-<strong>ساخت userPayload</strong>
- </aside></p>
+<aside class="content">
+**ساخت userPayload**
+</aside>
 
 <blockquote>
 <p><strong>ساخت کیف رمز پول کاربر:</strong></p>
@@ -465,9 +465,10 @@
  <br/>
  <br/></p>
 
-<p><aside class="content">
-<strong>ساخت serverPayload</strong>
- </aside></p>
+<aside class="content">
+**ساخت serverPayload**
+</aside>
+   
 
 <blockquote>
 <p><strong>ساخت کیف رمز پول سرور:</strong></p>
@@ -607,7 +608,7 @@
 <p>قطعه کد فوق خروجی زیر را به عنوان مقدار request بصورت String در بر خواهد داشت:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"serverPayload"</span><span class="p">:</span><span class="s2">"{</span><span class="se">\"</span><span class="s2">userPayload</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">data</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">{</span><span class="se">\\\\\\\"</span><span class="s2">mobileNo</span><span class="se">\\\\\\\"</span><span class="s2">:</span><span class="se">\\\\\\\"</span><span class="s2">شماره موبایل</span><span class="se">\\\\\\\"</span><span class="s2">,</span><span class="se">\\\\\\\"</span><span class="s2">identificationNumber</span><span class="se">\\\\\\\"</span><span class="s2">:</span><span class="se">\\\\\\\"</span><span class="s2">شناسه هویتی</span><span class="se">\\\\\\\"</span><span class="s2">,</span><span class="se">\\\\\\\"</span><span class="s2">identificationType</span><span class="se">\\\\\\\"</span><span class="s2">:</span><span class="se">\\\\\\\"</span><span class="s2">نوع شناسه هویتی</span><span class="se">\\\\\\\"</span><span class="s2">}</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">sign</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">امضا دیجیتال کاربر بر روی فیلد دیتا</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">cert</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">گواهی دیجیتال کاربر</span><span class="se">\\\"</span><span class="s2">}</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">data</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">walletType</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">نوع کیف رمز پول</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">state</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">وضعیت کیف رمز پول</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">description</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">توضیحات</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">certificates</span><span class="se">\\\"</span><span class="s2">:[</span><span class="se">\\\"</span><span class="s2">لیست گواهی‌های دیجیتال کاربر</span><span class="se">\\\"</span><span class="s2">],</span><span class="se">\\\"</span><span class="s2">attributes</span><span class="se">\\\"</span><span class="s2">:[</span><span class="se">\\\"</span><span class="s2">لیستی از ویژگی‌ها که بر روی کیف رمز پول تعریف می‌شود</span><span class="se">\\\"</span><span class="s2">],</span><span class="se">\\\"</span><span class="s2">walletID</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">شناسه کیف رمز پول</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">enrollmentID</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">کد ملی کاربر، شماره پاسپورت اتباع خارجی</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">bankID</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">شناسه بانک سازنده</span><span class="se">\\\"</span><span class="s2">}</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="nl">"sign"</span><span class="p">:</span><span class="s2">"امضای بک‌اند بر روی سرور پیلود"</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1c5bac17a1'>پاسخ دریافتی</h3>
+</span></code></pre></div>
 <aside class="success">
 در پاسخ به تراکنش ساخت کیف رمز پول، کیف پول سرور به صورت رشته برگردانده می‌شود. در صورت موفقیت تراکنش، مشخصه bornaTxID برابر با شناسه تراکنش دفتر کل مقداردهی می‌شود.
 </aside> 
