@@ -84,10 +84,13 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 جهت ساخت کیف رمز پول تابع CreateWallet با نوع Submit فراخوانی می‌شود.
 
+ <aside class="content">
+**ساخت userPayload**
+ </aside>
+
 > **ساخت کیف رمز پول کاربر:**
 
 ```java
-
 CreateWalletUP createWalletUP = new CreateWalletUP()
 			.setMobileNo(mobileNo)
 			.setIdentificationNumber(identification)
@@ -103,7 +106,6 @@ String createWalletUPStr = writeValueAsString(createWalletUP);
 > **ساخت userPayload:**
 
 ```java
-
 String certificate = writeValueAsString(certificate);
 String sign = sign(createWalletUPStr);
 
@@ -128,11 +130,33 @@ String userPayloadStr = writeValueAsString(userPayload);
 2 | identificationNumber | اجباری | نوع کیف رمز پول | شناسه هویتی 
 3 | identificationType | اجباری | کد ملی کاربر، شماره پاسپورت اتباع خارجی | نوع شناسه هویتی 
 4 | accountNumber | اختیاری | شماره حساب (شبا) | رشته 24 کاراکتری 
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
  
+ <aside class="content">
+**ساخت serverPayload**
+ </aside>
+   
 > **ساخت کیف رمز پول سرور:**
 
 ```java
-
 CreateWalletSP createWalletSP = new CreateWalletSP()
 			.setWalletId(walletId)
 			.setWalletType(walletType)
@@ -145,15 +169,15 @@ CreateWalletSP createWalletSP = new CreateWalletSP()
 
 String createWalletSPStr = writeValueAsString(createWalletSP);
 ```
-> قطعه کد فوق خروجی زیر را به عنوان مقدار کیف رمز پول **backend** بصورت String در بر خواهد داشت:
+> قطعه کد فوق خروجی زیر را به عنوان مقدار کیف رمز پول **سرور** بصورت String در بر خواهد داشت:
 
 ```json
 {"mobileNo":"شماره موبایل","identificationNumber":"شناسه هویتی","identificationType":"نوع شناسه هویتی"}
 ```
+
 > **ساخت serverPayload:**
 
 ```java
-
 ServerPayload serverPayload = new ServerPayload()
 			.setUserPayload(userPayloadStr)
 			.setData(createWalletSPStr);
@@ -179,7 +203,75 @@ String serverPayloadStr = writeValueAsString(serverPayload);
 8 | description | اختیاری | توضیحات | رشته کاراکتری 
 9 | bornaTxID | اختیاری | شناسه تراکنش در دفتر کل برنا | رشته کاراکتری
 
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ 
+ <aside class="content">
+**ساخت Request**
+ </aside>
+
+> **ساخت Request:**
+
+```java
+Request request = new Request()
+			.setServerPayload(serverPayloadStr)
+			.setSign(sign(serverPayloadStr));
+
+String requestStr = writeValueAsString(request);
+```
+
+> قطعه کد فوق خروجی زیر را به عنوان مقدار request بصورت String در بر خواهد داشت:
+
+```json
+{"serverPayload":"{\"userPayload\":\"{\\\"data\\\":\\\"{\\\\\\\"mobileNo\\\\\\\":\\\\\\\"شماره موبایل\\\\\\\",\\\\\\\"identificationNumber\\\\\\\":\\\\\\\"شناسه هویتی\\\\\\\",\\\\\\\"identificationType\\\\\\\":\\\\\\\"نوع شناسه هویتی\\\\\\\"}\\\",\\\"sign\\\":\\\"امضا دیجیتال کاربر بر روی فیلد دیتا\\\",\\\"cert\\\":\\\"گواهی دیجیتال کاربر\\\"}\",\"data\":\"{\\\"walletType\\\":\\\"نوع کیف رمز پول\\\",\\\"state\\\":\\\"وضعیت کیف رمز پول\\\",\\\"description\\\":\\\"توضیحات\\\",\\\"certificates\\\":[\\\"لیست گواهی‌های دیجیتال کاربر\\\"],\\\"attributes\\\":[\\\"لیستی از ویژگی‌ها که بر روی کیف رمز پول تعریف می‌شود\\\"],\\\"walletID\\\":\\\"شناسه کیف رمز پول\\\",\\\"enrollmentID\\\":\\\"کد ملی کاربر، شماره پاسپورت اتباع خارجی\\\",\\\"bankID\\\":\\\"شناسه بانک سازنده\\\"}\"}","sign":"امضای بک‌اند بر روی سرور پیلود"}
+```
+ 
+###پاسخ دریافتی 
+<aside class="success">
+در پاسخ به تراکنش ساخت کیف رمز پول، کیف پول سرور به صورت رشته برگردانده می‌شود. در صورت موفقیت تراکنش، مشخصه bornaTxID برابر با شناسه تراکنش دفتر کل مقداردهی می‌شود.
+</aside> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### HTTP Request
+
+test
+
+test
 
 `GET http://example.com/api/kittens`
 
