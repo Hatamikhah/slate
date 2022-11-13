@@ -1,15 +1,13 @@
 ---
-title: API Reference
+title: Borna API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - Java
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='#'>سابقه تغییرات API</a>
+  - <a href='#'>شرایط استفاده از API</a>
+  - <a href='#'>محیط آزمایشی</a>
 
 includes:
   - errors
@@ -20,65 +18,25 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentation for the Borna API
 ---
-
-# Introduction
-
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
 # مستندات API برنا 
+###فرآیند ارسال 
+فرآیند ارسال تراکنش از سوی کاربر و ثبت در دفتر کل، در سه مرحله صورت می‌پذیرد:
 
+۱. در حالت عمومی، تراکنش توسط کاربر تولید شده و امضا می‌شود و به سمت بک‌اند ارسال می‌گردد.
+<br/>
+۲. بک‌اند داده مورد نیاز را به تراکنش کاربر افزوده و امضای سیستمی بک‌اند را به آن الصاق می‌کند. داده‌ای که بک‌اند اضافه می‌کند با توجه به نوع تراکنش تعیین خواهد شد.
+<br/>
+۳. بک‌اند داده امضا شده را برای ثبت بر روی دفتر کل به شبکه بلاک چین برنا ارسال می‌کند. شبکه پس از سنجش صحت داده و بررسی اعتبار امضا و گواهی دیجیتال تراکنش را بر روی دفتر کل برنا ثبت می‌کند.
+
+###قالب ارسال 
 قالب تراکنش ارسالی از سمت Backend به شبکه برنا، به صورت یک رشته JSON می‌باشد. داده دریافتی از سمت کاربر در قالب userPayload برای قرارداد هوشمند ارسال می‌گردد. این قالب دارای سه فیلد می‌باشد:
 
 **userPayload.data:** این فیلد داده‌های ارسالی کاربر را شامل می‌شود.
-
+<br/>
 **userPayload.data:** گواهی دیجیتال کاربر در این فیلد قرار می‌گیرد.
-
+<br/>
 **userPayload.sign:** امضا دیجیتال کاربر در این فیلد ذخیره می‌گردد. نرم افزار همراه، فیلد userPayload.data را به رشته متنی تبدیل نموده و پس از امضا رشته حاصل را در این فیلد ذخیره می‌نماید.
 ## تراکنش ساخت کیف رمز پول 
 
@@ -121,8 +79,9 @@ String userPayloadStr = writeValueAsString(userPayload);
 ```json
 {"data":"{\"mobileNo\":\"شماره موبایل\",\"identificationNumber\":\"شناسه هویتی\",\"identificationType\":\"نوع شناسه هویتی\"}","sign":"امضا دیجیتال کاربر بر روی فیلد دیتا","cert":"گواهی دیجیتال کاربر"}
 ```
+مرحله اول در ایجاد این تراکنش، ساخت userPayload است. userPayload 
 
-###مشخصه‌های تراکنش ساخت کیف رمز پول - userPayload.date 
+`مشخصه‌های تراکنش ساخت کیف رمز پول - userPayload.date`
 
     ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
 --------- | ------- | -----------| ------- | -----------| ------- 
@@ -190,7 +149,8 @@ String serverPayloadStr = writeValueAsString(serverPayload);
 ```json
 {"userPayload":"{\"data\":\"{\\\"mobileNo\\\":\\\"شماره موبایل\\\",\\\"identificationNumber\\\":\\\"شناسه هویتی\\\",\\\"identificationType\\\":\\\"نوع شناسه هویتی\\\"}\",\"sign\":\"امضا دیجیتال کاربر بر روی فیلد دیتا\",\"cert\":\"گواهی دیجیتال کاربر\"}","data":"{\"walletType\":\"نوع کیف رمز پول\",\"state\":\"وضعیت کیف رمز پول\",\"description\":\"توضیحات\",\"certificates\":[\"لیست گواهی‌های دیجیتال کاربر\"],\"attributes\":[\"لیستی از ویژگی‌ها که بر روی کیف رمز پول تعریف می‌شود\"],\"walletID\":\"شناسه کیف رمز پول\",\"enrollmentID\":\"کد ملی کاربر، شماره پاسپورت اتباع خارجی\",\"bankID\":\"شناسه بانک سازنده\"}"}
 ```
-###مشخصه‌های تراکنش ساخت کیف رمز پول - serverPayload.date 
+`مشخصه‌های تراکنش ساخت کیف رمز پول - serverPayload.date`
+
     ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
 --------- | ------- | -----------| ------- | -----------| ------- 
 1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری 
@@ -234,7 +194,6 @@ String requestStr = writeValueAsString(request);
 {"serverPayload":"{\"userPayload\":\"{\\\"data\\\":\\\"{\\\\\\\"mobileNo\\\\\\\":\\\\\\\"شماره موبایل\\\\\\\",\\\\\\\"identificationNumber\\\\\\\":\\\\\\\"شناسه هویتی\\\\\\\",\\\\\\\"identificationType\\\\\\\":\\\\\\\"نوع شناسه هویتی\\\\\\\"}\\\",\\\"sign\\\":\\\"امضا دیجیتال کاربر بر روی فیلد دیتا\\\",\\\"cert\\\":\\\"گواهی دیجیتال کاربر\\\"}\",\"data\":\"{\\\"walletType\\\":\\\"نوع کیف رمز پول\\\",\\\"state\\\":\\\"وضعیت کیف رمز پول\\\",\\\"description\\\":\\\"توضیحات\\\",\\\"certificates\\\":[\\\"لیست گواهی‌های دیجیتال کاربر\\\"],\\\"attributes\\\":[\\\"لیستی از ویژگی‌ها که بر روی کیف رمز پول تعریف می‌شود\\\"],\\\"walletID\\\":\\\"شناسه کیف رمز پول\\\",\\\"enrollmentID\\\":\\\"کد ملی کاربر، شماره پاسپورت اتباع خارجی\\\",\\\"bankID\\\":\\\"شناسه بانک سازنده\\\"}\"}","sign":"امضای بک‌اند بر روی سرور پیلود"}
 ```
  
-###پاسخ دریافتی 
 <aside class="success">
 در پاسخ به تراکنش ساخت کیف رمز پول، کیف پول سرور به صورت رشته برگردانده می‌شود. در صورت موفقیت تراکنش، مشخصه bornaTxID برابر با شناسه تراکنش دفتر کل مقداردهی می‌شود.
 </aside> 
@@ -268,6 +227,12 @@ String requestStr = writeValueAsString(request);
 
 
 ### HTTP Request
+
+test
+
+test
+
+test
 
 test
 
