@@ -376,7 +376,7 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"serverPayload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">userPayload</span><span class="se">\"</span><span class="s2">:{...},</span><span class="se">\"</span><span class="s2">data</span><span class="se">\"</span><span class="s2">:{...}}"</span><span class="p">,</span><span class="nl">"sign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"serverSignValue"</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>در ادامه JsonObject مربوط به userPayload به رشته متنی تبدیل شده و داخل serverPayload قرار می‌گیرد. علاوه بر این، serverPayload.data داده‌های بک‌اند را نگهداری می‌کند. در نهایت جهت ساخت درخواست بک‌اند مقدار serverPayload را به رشته متنی تبدیل نموده و پس از امضا حاصل را در مقدار sign بک‌اند ذخیره می‌کند. درخواست بک‌اند پس از تبدیل به رشته متنی شدن به شکل مقابل می‌باشد:</p>
+<p>در ادامه JsonObject مربوط به userPayload به رشته متنی تبدیل شده و داخل فیلد serverPayload.userPayload قرار می‌گیرد. علاوه بر این، فیلد serverPayload.data نیز داده‌های بک‌اند را نگهداری می‌کند. در نهایت جهت ساخت درخواست بک‌اند مقدار serverPayload را به رشته متنی تبدیل نموده و پس از امضا حاصل را در مقدار sign بک‌اند ذخیره می‌کند. درخواست بک‌اند پس از تبدیل به رشته متنی شدن به شکل مقابل می‌باشد:</p>
 <h2 id='3f605fa2be'>تراکنش ساخت کیف رمز پول</h2>
 <p>جهت ساخت کیف رمز پول تابع CreateWallet با نوع Submit فراخوانی می‌شود.</p>
 
@@ -417,9 +417,9 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"data"</span><span class="p">:</span><span class="s2">"{</span><span class="se">\"</span><span class="s2">mobileNo</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">شماره موبایل</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">identificationNumber</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">شناسه هویتی</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">identificationType</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">نوع شناسه هویتی</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="nl">"sign"</span><span class="p">:</span><span class="s2">"امضا دیجیتال کاربر بر روی فیلد دیتا"</span><span class="p">,</span><span class="nl">"cert"</span><span class="p">:</span><span class="s2">"گواهی دیجیتال کاربر"</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>مرحله اول در تراکنش ساخت کیف رمز پول، ساخت قالب userPayload است. قالب userPayload دارای سه فیلد userPayload.data، userPayload.cert و userPayload.sign می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. پس جهت ساخت قالب userPayload، ابتدا بایستی کیف رمز پول کاربر ساخته شود. مشخصه‌های کیف رمز پول کاربر در جدول زیر آمده است. همچنین نمونه کد مقابل نیز نحوه ساخت کیف رمز پول کاربر را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.</p>
+<p>مرحله اول در تراکنش ساخت کیف رمز پول، ساخت قالب userPayload است. قالب userPayload دارای سه فیلد userPayload.data، userPayload.cert و userPayload.sign می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد userPayload.data همان رشته متنی کیف رمز پول کاربر می‌باشد که مشخصه‌های آن در جدول زیر آمده است. نمونه کد مقابل نحوه ساخت کیف رمز پول کاربر را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.</p>
 
-<p><code>مشخصه‌های تراکنش ساخت کیف رمز پول - userPayload.date</code></p>
+<p><code>مشخصه‌های کیف رمز پول کاربر - userPayload.date</code></p>
 
 <table><thead>
 <tr>
@@ -461,23 +461,17 @@
 </tbody></table>
 
 <p><br/>
- اکنون رشته متنی کیف رمز پول کاربر که به عنوان فیلد userPayload.data می‌باشد به همراه گواهی دیجیتال کاربر یعنی فیلد userPayload.cert و امضا دیجیتال کاربر یعنی فیلد userPayload.sign که بر روی رشته متنی فیلد userPayload.data انجام شده است، در قالب userPayload قرار می‌گیرد که لازم است در انتها تمام آن به رشته متنی تبدیل شود.<br>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/></p>
+اکنون رشته متنی کیف رمز پول کاربر که به عنوان فیلد userPayload.data می‌باشد به همراه گواهی دیجیتال کاربر یعنی فیلد userPayload.cert و امضا دیجیتال کاربر یعنی فیلد userPayload.sign که بر روی رشته متنی فیلد userPayload.data انجام شده است، در قالب userPayload قرار می‌گیرد. نمونه کد مقابل نحوه ساخت قالب userPayload را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.<br>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/></p>
 
 <p><aside class="content">
 <strong>ساخت serverPayload</strong>
@@ -517,7 +511,9 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"userPayload"</span><span class="p">:</span><span class="s2">"{</span><span class="se">\"</span><span class="s2">data</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">mobileNo</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">شماره موبایل</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">identificationNumber</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">شناسه هویتی</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">identificationType</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">نوع شناسه هویتی</span><span class="se">\\\"</span><span class="s2">}</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">sign</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">امضا دیجیتال کاربر بر روی فیلد دیتا</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">cert</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">گواهی دیجیتال کاربر</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="nl">"data"</span><span class="p">:</span><span class="s2">"{</span><span class="se">\"</span><span class="s2">walletType</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">نوع کیف رمز پول</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">state</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">وضعیت کیف رمز پول</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">توضیحات</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">certificates</span><span class="se">\"</span><span class="s2">:[</span><span class="se">\"</span><span class="s2">لیست گواهی‌های دیجیتال کاربر</span><span class="se">\"</span><span class="s2">],</span><span class="se">\"</span><span class="s2">attributes</span><span class="se">\"</span><span class="s2">:[</span><span class="se">\"</span><span class="s2">لیستی از ویژگی‌ها که بر روی کیف رمز پول تعریف می‌شود</span><span class="se">\"</span><span class="s2">],</span><span class="se">\"</span><span class="s2">walletID</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">شناسه کیف رمز پول</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">enrollmentID</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">کد ملی کاربر، شماره پاسپورت اتباع خارجی</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">bankID</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">شناسه بانک سازنده</span><span class="se">\"</span><span class="s2">}"</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p><code>مشخصه‌های تراکنش ساخت کیف رمز پول - serverPayload.date</code></p>
+<p>مرحله دوم در تراکنش ساخت کیف رمز پول، ساخت قالب serverPayload است. قالب serverPayload دارای دو فیلد serverPayload.data و serverayload.userPayload می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد serverPayload.data همان رشته متنی کیف رمز پول سرور می‌باشد که مشخصه‌های آن در جدول زیر آمده است. نمونه کد مقابل نحوه ساخت کیف رمز پول سرور را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.</p>
+
+<p><code>مشخصه‌های کیف رمز پول سرور - serverPayload.date</code></p>
 
 <table><thead>
 <tr>
@@ -594,15 +590,10 @@
 </tbody></table>
 
 <p><br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/></p>
+اکنون رشته متنی کیف رمز پول سرور که به عنوان فیلد serverPayload.data می‌باشد به همراه قالب userPayload که در بالا تولید شده است، در قالب serverPayload قرار می‌گیرد. نمونه کد مقابل نحوه ساخت قالب serverPayload را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+<br/>
+<br/>
+<br/></p>
 
 <p><aside class="content">
 <strong>ساخت Request</strong>
@@ -622,9 +613,42 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"serverPayload"</span><span class="p">:</span><span class="s2">"{</span><span class="se">\"</span><span class="s2">userPayload</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">data</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">{</span><span class="se">\\\\\\\"</span><span class="s2">mobileNo</span><span class="se">\\\\\\\"</span><span class="s2">:</span><span class="se">\\\\\\\"</span><span class="s2">شماره موبایل</span><span class="se">\\\\\\\"</span><span class="s2">,</span><span class="se">\\\\\\\"</span><span class="s2">identificationNumber</span><span class="se">\\\\\\\"</span><span class="s2">:</span><span class="se">\\\\\\\"</span><span class="s2">شناسه هویتی</span><span class="se">\\\\\\\"</span><span class="s2">,</span><span class="se">\\\\\\\"</span><span class="s2">identificationType</span><span class="se">\\\\\\\"</span><span class="s2">:</span><span class="se">\\\\\\\"</span><span class="s2">نوع شناسه هویتی</span><span class="se">\\\\\\\"</span><span class="s2">}</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">sign</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">امضا دیجیتال کاربر بر روی فیلد دیتا</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">cert</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">گواهی دیجیتال کاربر</span><span class="se">\\\"</span><span class="s2">}</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">data</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">walletType</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">نوع کیف رمز پول</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">state</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">وضعیت کیف رمز پول</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">description</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">توضیحات</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">certificates</span><span class="se">\\\"</span><span class="s2">:[</span><span class="se">\\\"</span><span class="s2">لیست گواهی‌های دیجیتال کاربر</span><span class="se">\\\"</span><span class="s2">],</span><span class="se">\\\"</span><span class="s2">attributes</span><span class="se">\\\"</span><span class="s2">:[</span><span class="se">\\\"</span><span class="s2">لیستی از ویژگی‌ها که بر روی کیف رمز پول تعریف می‌شود</span><span class="se">\\\"</span><span class="s2">],</span><span class="se">\\\"</span><span class="s2">walletID</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">شناسه کیف رمز پول</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">enrollmentID</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">کد ملی کاربر، شماره پاسپورت اتباع خارجی</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">bankID</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">شناسه بانک سازنده</span><span class="se">\\\"</span><span class="s2">}</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="nl">"sign"</span><span class="p">:</span><span class="s2">"امضای سیستمی بر روی سرور پیلود"</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<p>مرحله سوم در تراکنش ساخت کیف رمز پول، ساخت قالب request است. قالب request دارای دو فیلد request.serverPayload و request.sign می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد request.sign امضا دیجیتال سیستمی بر روی رشته متنی serverPayload تولید شده در بالا می‌باشد. نمونه کد مقابل نحوه ساخت قالب request را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/></p>
+
+<p><aside class="content">
+<strong>ارسال تراکنش</strong>
+ </aside></p>
+
+<blockquote>
+<p><strong>ارسال تراکنش:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="kt">byte</span><span class="o">[]&gt;</span> <span class="n">transientMap</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="n">transientMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"srvCert"</span><span class="o">,</span> <span class="n">certificate</span><span class="o">);</span>
+<span class="kd">final</span> <span class="n">org</span><span class="o">.</span><span class="na">hyperledger</span><span class="o">.</span><span class="na">fabric</span><span class="o">.</span><span class="na">gateway</span><span class="o">.</span><span class="na">Transaction</span> <span class="n">transaction</span> <span class="o">=</span> <span class="n">org</span><span class="o">.</span><span class="na">hyperledger</span><span class="o">.</span><span class="na">fabric</span><span class="o">.</span><span class="na">gateway</span><span class="o">.</span><span class="na">Contract</span><span class="o">.</span><span class="na">createTransaction</span><span class="o">(</span><span class="s">"CreateWallet"</span><span class="o">);</span>
+<span class="n">transaction</span><span class="o">.</span><span class="na">setTransient</span><span class="o">(</span><span class="n">transientMap</span><span class="o">);</span>
+<span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">transferPKI</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="n">requestStr</span><span class="o">);</span>
+</code></pre></div>
+<p>مرحله چهارم در تراکنش ساخت کیف رمز پول، ارسال رشته متنی درخواست تولید شده در بالا برای ثبت بر روی دفتر کل به شبکه بلاک چین برنا می‌باشد. همچنین لازم است گواهی دیجیتال سیستمی بک‌اند به صورت Transient با کلید srvCert نیز ارسال گردد. توجه شود که ارسال تراکنش ساخت کیف رمز پول به صورت <strong>submit</strong> می‌باشد.
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <aside class="success">
 در پاسخ به تراکنش ساخت کیف رمز پول، کیف پول سرور به صورت رشته برگردانده می‌شود. در صورت موفقیت تراکنش، مشخصه bornaTxID برابر با شناسه تراکنش دفتر کل مقداردهی می‌شود.
-</aside> 
+</aside> </p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://example.com/api/kittens</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -732,8 +756,6 @@ Remember — a happy kitten is an authenticated kitten!
 <td>The ID of the kitten to delete</td>
 </tr>
 </tbody></table>
-
-<p>test</p>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
