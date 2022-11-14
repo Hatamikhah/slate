@@ -56,7 +56,7 @@ meta:
 ```json
 {"serverPayload": "{\"userPayload\":{...},\"data\":{...}}","sign": "serverSignValue"}
 ```
-در ادامه JsonObject مربوط به userPayload به رشته متنی تبدیل شده و داخل serverPayload قرار می‌گیرد. علاوه بر این، serverPayload.data داده‌های بک‌اند را نگهداری می‌کند. در نهایت جهت ساخت درخواست بک‌اند مقدار serverPayload را به رشته متنی تبدیل نموده و پس از امضا حاصل را در مقدار sign بک‌اند ذخیره می‌کند. درخواست بک‌اند پس از تبدیل به رشته متنی شدن به شکل مقابل می‌باشد:
+در ادامه JsonObject مربوط به userPayload به رشته متنی تبدیل شده و داخل فیلد serverPayload.userPayload قرار می‌گیرد. علاوه بر این، فیلد serverPayload.data نیز داده‌های بک‌اند را نگهداری می‌کند. در نهایت جهت ساخت درخواست بک‌اند مقدار serverPayload را به رشته متنی تبدیل نموده و پس از امضا حاصل را در مقدار sign بک‌اند ذخیره می‌کند. درخواست بک‌اند پس از تبدیل به رشته متنی شدن به شکل مقابل می‌باشد:
 
 ## تراکنش ساخت کیف رمز پول 
 
@@ -99,9 +99,9 @@ String userPayloadStr = writeValueAsString(userPayload);
 ```json
 {"data":"{\"mobileNo\":\"شماره موبایل\",\"identificationNumber\":\"شناسه هویتی\",\"identificationType\":\"نوع شناسه هویتی\"}","sign":"امضا دیجیتال کاربر بر روی فیلد دیتا","cert":"گواهی دیجیتال کاربر"}
 ```
-مرحله اول در تراکنش ساخت کیف رمز پول، ساخت قالب userPayload است. قالب userPayload دارای سه فیلد userPayload.data، userPayload.cert و userPayload.sign می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. پس جهت ساخت قالب userPayload، ابتدا بایستی کیف رمز پول کاربر ساخته شود. مشخصه‌های کیف رمز پول کاربر در جدول زیر آمده است. همچنین نمونه کد مقابل نیز نحوه ساخت کیف رمز پول کاربر را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+مرحله اول در تراکنش ساخت کیف رمز پول، ساخت قالب userPayload است. قالب userPayload دارای سه فیلد userPayload.data، userPayload.cert و userPayload.sign می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد userPayload.data همان رشته متنی کیف رمز پول کاربر می‌باشد که مشخصه‌های آن در جدول زیر آمده است. نمونه کد مقابل نحوه ساخت کیف رمز پول کاربر را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
 
-`مشخصه‌های تراکنش ساخت کیف رمز پول - userPayload.date`
+`مشخصه‌های کیف رمز پول کاربر - userPayload.date`
 
     ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
 --------- | ------- | -----------| ------- | -----------| ------- 
@@ -109,24 +109,18 @@ String userPayloadStr = writeValueAsString(userPayload);
 2 | identificationNumber | اجباری | نوع کیف رمز پول | شناسه هویتی 
 3 | identificationType | اجباری | کد ملی کاربر، شماره پاسپورت اتباع خارجی | نوع شناسه هویتی 
 4 | accountNumber | اختیاری | شماره حساب (شبا) | رشته 24 کاراکتری 
- <br/>
- اکنون رشته متنی کیف رمز پول کاربر که به عنوان فیلد userPayload.data می‌باشد به همراه گواهی دیجیتال کاربر یعنی فیلد userPayload.cert و امضا دیجیتال کاربر یعنی فیلد userPayload.sign که بر روی رشته متنی فیلد userPayload.data انجام شده است، در قالب userPayload قرار می‌گیرد که لازم است در انتها تمام آن به رشته متنی تبدیل شود.   
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
+<br/>
+اکنون رشته متنی کیف رمز پول کاربر که به عنوان فیلد userPayload.data می‌باشد به همراه گواهی دیجیتال کاربر یعنی فیلد userPayload.cert و امضا دیجیتال کاربر یعنی فیلد userPayload.sign که بر روی رشته متنی فیلد userPayload.data انجام شده است، در قالب userPayload قرار می‌گیرد. نمونه کد مقابل نحوه ساخت قالب userPayload را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.   
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
  
  <aside class="content">
 **ساخت serverPayload**
@@ -168,7 +162,9 @@ String serverPayloadStr = writeValueAsString(serverPayload);
 ```json
 {"userPayload":"{\"data\":\"{\\\"mobileNo\\\":\\\"شماره موبایل\\\",\\\"identificationNumber\\\":\\\"شناسه هویتی\\\",\\\"identificationType\\\":\\\"نوع شناسه هویتی\\\"}\",\"sign\":\"امضا دیجیتال کاربر بر روی فیلد دیتا\",\"cert\":\"گواهی دیجیتال کاربر\"}","data":"{\"walletType\":\"نوع کیف رمز پول\",\"state\":\"وضعیت کیف رمز پول\",\"description\":\"توضیحات\",\"certificates\":[\"لیست گواهی‌های دیجیتال کاربر\"],\"attributes\":[\"لیستی از ویژگی‌ها که بر روی کیف رمز پول تعریف می‌شود\"],\"walletID\":\"شناسه کیف رمز پول\",\"enrollmentID\":\"کد ملی کاربر، شماره پاسپورت اتباع خارجی\",\"bankID\":\"شناسه بانک سازنده\"}"}
 ```
-`مشخصه‌های تراکنش ساخت کیف رمز پول - serverPayload.date`
+مرحله دوم در تراکنش ساخت کیف رمز پول، ساخت قالب serverPayload است. قالب serverPayload دارای دو فیلد serverPayload.data و serverayload.userPayload می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد serverPayload.data همان رشته متنی کیف رمز پول سرور می‌باشد که مشخصه‌های آن در جدول زیر آمده است. نمونه کد مقابل نحوه ساخت کیف رمز پول سرور را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+
+`مشخصه‌های کیف رمز پول سرور - serverPayload.date`
 
     ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
 --------- | ------- | -----------| ------- | -----------| ------- 
@@ -182,16 +178,11 @@ String serverPayloadStr = writeValueAsString(serverPayload);
 8 | description | اختیاری | توضیحات | رشته کاراکتری 
 9 | bornaTxID | اختیاری | شناسه تراکنش در دفتر کل برنا | رشته کاراکتری
 
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
+<br/>
+اکنون رشته متنی کیف رمز پول سرور که به عنوان فیلد serverPayload.data می‌باشد به همراه قالب userPayload که در بالا تولید شده است، در قالب serverPayload قرار می‌گیرد. نمونه کد مقابل نحوه ساخت قالب serverPayload را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+<br/>
+<br/>
+<br/>
  
  <aside class="content">
 **ساخت Request**
@@ -212,7 +203,39 @@ String requestStr = writeValueAsString(request);
 ```json
 {"serverPayload":"{\"userPayload\":\"{\\\"data\\\":\\\"{\\\\\\\"mobileNo\\\\\\\":\\\\\\\"شماره موبایل\\\\\\\",\\\\\\\"identificationNumber\\\\\\\":\\\\\\\"شناسه هویتی\\\\\\\",\\\\\\\"identificationType\\\\\\\":\\\\\\\"نوع شناسه هویتی\\\\\\\"}\\\",\\\"sign\\\":\\\"امضا دیجیتال کاربر بر روی فیلد دیتا\\\",\\\"cert\\\":\\\"گواهی دیجیتال کاربر\\\"}\",\"data\":\"{\\\"walletType\\\":\\\"نوع کیف رمز پول\\\",\\\"state\\\":\\\"وضعیت کیف رمز پول\\\",\\\"description\\\":\\\"توضیحات\\\",\\\"certificates\\\":[\\\"لیست گواهی‌های دیجیتال کاربر\\\"],\\\"attributes\\\":[\\\"لیستی از ویژگی‌ها که بر روی کیف رمز پول تعریف می‌شود\\\"],\\\"walletID\\\":\\\"شناسه کیف رمز پول\\\",\\\"enrollmentID\\\":\\\"کد ملی کاربر، شماره پاسپورت اتباع خارجی\\\",\\\"bankID\\\":\\\"شناسه بانک سازنده\\\"}\"}","sign":"امضای سیستمی بر روی سرور پیلود"}
 ```
+مرحله سوم در تراکنش ساخت کیف رمز پول، ساخت قالب request است. قالب request دارای دو فیلد request.serverPayload و request.sign می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد request.sign امضا دیجیتال سیستمی بر روی رشته متنی serverPayload تولید شده در بالا می‌باشد. نمونه کد مقابل نحوه ساخت قالب request را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
  
+ <aside class="content">
+**ارسال تراکنش**
+ </aside>
+ 
+> **ارسال تراکنش:**
+
+```java
+Map<String, byte[]> transientMap = new HashMap<>();
+transientMap.put("srvCert", certificate);
+final org.hyperledger.fabric.gateway.Transaction transaction = org.hyperledger.fabric.gateway.Contract.createTransaction("CreateWallet");
+transaction.setTransient(transientMap);
+final byte[] transferPKI = transaction.submit(requestStr);
+```
+مرحله چهارم در تراکنش ساخت کیف رمز پول، ارسال رشته متنی درخواست تولید شده در بالا برای ثبت بر روی دفتر کل به شبکه بلاک چین برنا می‌باشد. همچنین لازم است گواهی دیجیتال سیستمی بک‌اند به صورت Transient با کلید srvCert نیز ارسال گردد. توجه شود که ارسال تراکنش ساخت کیف رمز پول به صورت **submit** می‌باشد.
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <aside class="success">
 در پاسخ به تراکنش ساخت کیف رمز پول، کیف پول سرور به صورت رشته برگردانده می‌شود. در صورت موفقیت تراکنش، مشخصه bornaTxID برابر با شناسه تراکنش دفتر کل مقداردهی می‌شود.
 </aside> 
@@ -366,4 +389,9 @@ ID | The ID of the kitten to delete
 
 
 test
-
+test
+test
+test
+test
+test
+test
