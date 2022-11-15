@@ -476,7 +476,6 @@ String requestStr = writeValueAsString(request);
 <br/>
 <br/>
 <br/>
-<br/>
  
  <aside class="content">
 **ارسال تراکنش**
@@ -500,6 +499,135 @@ final byte[] transferPKI = transaction.submit(requestStr);
 <br/>
 <aside class="success">
 در پاسخ به تراکنش بروز رسانی نوع کیف رمز پول، کیف پول سرور به صورت رشته متنی برگردانده می‌شود. در صورت موفقیت تراکنش، مشخصه bornaTxID برابر با شناسه تراکنش دفتر کل مقداردهی می‌شود.
+</aside> 
+
+## تراکنش بروز رسانی شماره حساب کیف رمز پول 
+
+جهت بروز رسانی شماره حساب کیف رمز پول تابع UpdateWalletAccountNumber با نوع Submit فراخوانی می‌شود. این شماره حساب در فرآیند دشارژ و تبدیل رمز پول به ریال مورد استفاده قرار می‌گیرد
+
+ <aside class="content">
+**ساخت userPayload**
+ </aside>
+
+> **ساخت userPayload:**
+
+```java
+String userPayloadStr = "";
+```
+مرحله اول در تراکنش بروز رسانی شماره حساب کیف رمز پول، ساخت قالب userPayload است. قالب userPayload در این تراکنش رشته‌ای با مقدار خالی می‌باشد. نمونه کد مقابل نحوه ساخت قالب userPayload را نشان می‌دهد.
+<br/>
+<br/>
+<br/>
+ 
+ <aside class="content">
+**ساخت serverPayload**
+ </aside>
+   
+> **ساخت کیف رمز پول سرور:**
+
+```java
+UpdateWalletAccountNumber udateWalletAccountNumber = new UpdateWalletAccountNumber()
+			.setWalletId(walletID)
+			.setAccountNumber(accountNumber);
+
+String udateWalletAccountNumberStr = writeValueAsString(udateWalletAccountNumber);
+```
+> قطعه کد فوق خروجی زیر را به عنوان مقدار کیف رمز پول **سرور** بصورت String در بر خواهد داشت:
+
+```json
+{"accountNumber":"شماره حساب کاربر","walletID":"شناسه کیف رمز پول"}
+```
+
+> **ساخت serverPayload:**
+
+```java
+ServerPayload serverPayload = new ServerPayload()
+			.setUserPayload(userPayloadStr)
+			.setData(udateWalletAccountNumberStr);
+
+String serverPayloadStr = writeValueAsString(serverPayload);
+```
+
+> قطعه کد فوق خروجی زیر را به عنوان مقدار serverPayloadStr بصورت String در بر خواهد داشت:
+
+```json
+{"userPayload":"","data":"{\"accountNumber\":\"شماره حساب کاربر\",\"walletID\":\"شناسه کیف رمز پول\"}"}
+```
+مرحله دوم در تراکنش بروز رسانی شماره حساب کیف رمز پول، ساخت قالب serverPayload است. قالب serverPayload دارای دو فیلد serverPayload.data و serverayload.userPayload می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد serverPayload.data همان رشته متنی کیف رمز پول سرور می‌باشد که مشخصه‌های آن در جدول زیر آمده است. نمونه کد مقابل نحوه ساخت کیف رمز پول سرور را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+
+`مشخصه‌های کیف رمز پول سرور - serverPayload.date`
+
+    ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
+--------- | ------- | -----------| ------- | -----------| ------- 
+1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری 
+2 | accountNumber | اجباری | شماره حساب کاربر | رشته کاراکتری 
+3 | bornaTxID | اختیاری | شناسه تراکنش در دفتر کل برنا | رشته کاراکتری
+
+<br/>
+اکنون رشته متنی کیف رمز پول سرور که به عنوان فیلد serverPayload.data می‌باشد به همراه قالب userPayload که در بالا تولید شده است، در قالب serverPayload قرار می‌گیرد. نمونه کد مقابل نحوه ساخت قالب serverPayload را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+ 
+ <aside class="content">
+**ساخت Request**
+ </aside>
+
+> **ساخت Request:**
+
+```java
+Request request = new Request()
+			.setServerPayload(serverPayloadStr)
+			.setSign(sign(serverPayloadStr));
+
+String requestStr = writeValueAsString(request);
+```
+
+> قطعه کد فوق خروجی زیر را به عنوان مقدار request بصورت String در بر خواهد داشت:
+
+```json
+{"serverPayload":"{\"userPayload\":\"\",\"data\":\"{\\\"accountNumber\\\":\\\"شماره حساب کاربر\\\",\\\"walletID\\\":\\\"شناسه کیف رمز پول\\\"}\"}","sign":"امضای دیجیتال سیستمی بر روی سرور پیلود"}
+```
+مرحله سوم در تراکنش بروز رسانی شماره حساب کیف رمز پول، ساخت قالب request است. قالب request دارای دو فیلد request.serverPayload و request.sign می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد request.sign امضا دیجیتال سیستمی بر روی رشته متنی serverPayload تولید شده در بالا می‌باشد. نمونه کد مقابل نحوه ساخت قالب request را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+ 
+ <aside class="content">
+**ارسال تراکنش**
+ </aside>
+ 
+> **ارسال تراکنش:**
+
+```java
+Map<String, byte[]> transientMap = new HashMap<>();
+transientMap.put("srvCert", certificate);
+final org.hyperledger.fabric.gateway.Transaction transaction = org.hyperledger.fabric.gateway.Contract.createTransaction("UpdateWalletType");
+transaction.setTransient(transientMap);
+final byte[] transferPKI = transaction.submit(requestStr);
+```
+مرحله چهارم در تراکنش بروز رسانی شماره حساب کیف رمز پول، ارسال رشته متنی درخواست تولید شده در بالا برای ثبت بر روی دفتر کل به شبکه بلاک چین برنا می‌باشد. همچنین لازم است گواهی دیجیتال سیستمی بک‌اند به صورت Transient با کلید srvCert نیز ارسال گردد. توجه شود که ارسال تراکنش بروز رسانی شماره حساب کیف رمز پول به صورت **submit** می‌باشد.
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<aside class="success">
+در پاسخ به تراکنش بروز رسانی شماره حساب کیف رمز پول، کیف پول سرور به صورت رشته متنی برگردانده می‌شود. در صورت موفقیت تراکنش، مشخصه bornaTxID برابر با شناسه تراکنش دفتر کل مقداردهی می‌شود.
 </aside> 
 
 
@@ -650,10 +778,6 @@ Parameter | Description
 ID | The ID of the kitten to delete
 
 
-test
-test
-test
-test
 test
 test
 test
