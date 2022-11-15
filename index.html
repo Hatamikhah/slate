@@ -1226,43 +1226,8 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"userPayload"</span><span class="p">:</span><span class="s2">"{</span><span class="se">\"</span><span class="s2">data</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">tokenID</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">شناسه رمز پول</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">tokenSymbol</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">نماد رمز پول</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">walletID</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">شناسه کیف رمز پول</span><span class="se">\\\"</span><span class="s2">}</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">sign</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">امضا دیجیتال کاربر بر روی فیلد دیتای یوزر پیلود</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">cert</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">گواهی دیجیتال کاربر</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="nl">"data"</span><span class="p">:</span><span class="s2">""</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>مرحله دوم در تراکنش دریافت موجودی کیف رمز پول، ساخت قالب serverPayload است. قالب serverPayload دارای دو فیلد serverPayload.data و serverayload.userPayload می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد serverPayload.data همان رشته متنی کیف رمز پول سرور می‌باشد که در این تراکنش رشته‌ای با مقدار خالی است. نمونه کد مقابل نحوه ساخت کیف رمز پول سرور را نشان می‌دهد.</p>
-
-<p><code>مشخصه‌های کیف رمز پول سرور - serverPayload.date</code></p>
-
-<table><thead>
-<tr>
-<th>ردیف</th>
-<th>نام مشخصه</th>
-<th>نوع</th>
-<th>شرح مشخصه</th>
-<th>ساختار</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>1</td>
-<td>walletID</td>
-<td>اجباری</td>
-<td>شناسه کیف رمز پول</td>
-<td>رشته 16 کاراکتری</td>
-</tr>
-<tr>
-<td>2</td>
-<td>accountNumber</td>
-<td>اجباری</td>
-<td>شماره حساب کاربر</td>
-<td>رشته کاراکتری</td>
-</tr>
-<tr>
-<td>3</td>
-<td>bornaTxID</td>
-<td>اختیاری</td>
-<td>شناسه تراکنش در دفتر کل برنا</td>
-<td>رشته کاراکتری</td>
-</tr>
-</tbody></table>
-
-<p><br/>
+<p>مرحله دوم در تراکنش دریافت موجودی کیف رمز پول، ساخت قالب serverPayload است. قالب serverPayload دارای دو فیلد serverPayload.data و serverayload.userPayload می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد serverPayload.data همان رشته متنی کیف رمز پول سرور می‌باشد که در این تراکنش رشته‌ای با مقدار خالی است. نمونه کد مقابل نحوه ساخت کیف رمز پول سرور را نشان می‌دهد.
+<br/>
 اکنون رشته متنی کیف رمز پول سرور که به عنوان فیلد serverPayload.data می‌باشد به همراه قالب userPayload که در بالا تولید شده است، در قالب serverPayload قرار می‌گیرد. نمونه کد مقابل نحوه ساخت قالب serverPayload را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
 <br/>
 <br/>
