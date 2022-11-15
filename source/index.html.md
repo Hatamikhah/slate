@@ -84,12 +84,9 @@ String createWalletUPStr = writeValueAsString(createWalletUP);
 > **ساخت userPayload:**
 
 ```java
-String certificate = writeValueAsString(certificate);
-String sign = sign(createWalletUPStr);
-
 UserPayload userPayload = new UserPayload()
 			.setData(createWalletUPStr)
-			.setCert(certificate)
+			.setCert(writeValueAsString(certificate))
 			.setSign(sign(createWalletUPStr));
 
 String userPayloadStr = writeValueAsString(userPayload);
@@ -105,10 +102,10 @@ String userPayloadStr = writeValueAsString(userPayload);
 
     ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
 --------- | ------- | -----------| ------- | -----------| ------- 
-1 | mobileNo | اجباری | شماره موبایل | رشته 11 کاراکتری 
-2 | identificationNumber | اجباری | نوع کیف رمز پول | شناسه هویتی 
-3 | identificationType | اجباری | کد ملی کاربر، شماره پاسپورت اتباع خارجی | نوع شناسه هویتی 
-4 | accountNumber | اختیاری | شماره حساب (شبا) | رشته 24 کاراکتری 
+1 | mobileNo | اجباری | شماره موبایل | رشته 11 کاراکتری
+2 | identificationNumber | اجباری | شناسه هویتی | رشته کاراکتری
+3 | identificationType | اجباری | نوع شناسه هویتی | رشته کاراکتری
+4 | accountNumber | اختیاری | شماره حساب (شبا) | رشته 24 کاراکتری
 <br/>
 اکنون رشته متنی کیف رمز پول کاربر که به عنوان فیلد userPayload.data می‌باشد به همراه گواهی دیجیتال کاربر یعنی فیلد userPayload.cert و امضا دیجیتال کاربر یعنی فیلد userPayload.sign که بر روی رشته متنی فیلد userPayload.data انجام شده است، در قالب userPayload قرار می‌گیرد. نمونه کد مقابل نحوه ساخت قالب userPayload را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.   
 <br/>
@@ -168,14 +165,14 @@ String serverPayloadStr = writeValueAsString(serverPayload);
 
     ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
 --------- | ------- | -----------| ------- | -----------| ------- 
-1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری 
-2 | walletType | اجباری | نوع کیف رمز پول | رشته کاراکتری 
-3 | enrollmentID | اجباری | کد ملی کاربر، شماره پاسپورت اتباع خارجی | رشته کاراکتری 
-4 | state | اختیاری | وضعیت کیف رمز پول | رشته کاراکتری 
-5 | attributes | اختیاری | لیستی از ویژگی‌هاکه بر روی کیف رمز پول تعریف می‌شود | رشته کاراکتری 
-6 | bankID | اجباری | شناسه بانک سازنده | رشته کاراکتری 
-7 | certificates | اجباری | لیست گواهی‌های دیجیتال کاربر | رشته کاراکتری 
-8 | description | اختیاری | توضیحات | رشته کاراکتری 
+1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری
+2 | walletType | اجباری | نوع کیف رمز پول | رشته کاراکتری
+3 | enrollmentID | اجباری | کد ملی کاربر، شماره پاسپورت اتباع خارجی | رشته کاراکتری
+4 | state | اختیاری | وضعیت کیف رمز پول | رشته کاراکتری
+5 | attributes | اختیاری | لیستی از ویژگی‌هاکه بر روی کیف رمز پول تعریف می‌شود | رشته کاراکتری
+6 | bankID | اجباری | شناسه بانک سازنده | رشته کاراکتری
+7 | certificates | اجباری | لیست گواهی‌های دیجیتال کاربر | رشته کاراکتری
+8 | description | اختیاری | توضیحات | رشته کاراکتری
 9 | bornaTxID | اختیاری | شناسه تراکنش در دفتر کل برنا | رشته کاراکتری
 
 <br/>
@@ -299,9 +296,9 @@ String serverPayloadStr = writeValueAsString(serverPayload);
 
     ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
 --------- | ------- | -----------| ------- | -----------| ------- 
-1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری 
-2 | enrollmentID | اجباری | کد ملی کاربر، شماره پاسپورت اتباع خارجی | رشته کاراکتری 
-3 | certificates | اجباری | لیست گواهی‌های دیجیتال کاربر | رشته کاراکتری 
+1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری
+2 | enrollmentID | اجباری | کد ملی کاربر، شماره پاسپورت اتباع خارجی | رشته کاراکتری
+3 | certificates | اجباری | لیست گواهی‌های دیجیتال کاربر | رشته کاراکتری
 4 | bornaTxID | اختیاری | شناسه تراکنش در دفتر کل برنا | رشته کاراکتری
 
 <br/>
@@ -430,8 +427,8 @@ String serverPayloadStr = writeValueAsString(serverPayload);
 
     ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
 --------- | ------- | -----------| ------- | -----------| ------- 
-1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری 
-2 | walletType | اجباری | نوع کیف رمز پول | رشته کاراکتری 
+1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری
+2 | walletType | اجباری | نوع کیف رمز پول | رشته کاراکتری
 3 | bornaTxID | اختیاری | شناسه تراکنش در دفتر کل برنا | رشته کاراکتری
 
 <br/>
@@ -503,7 +500,7 @@ final byte[] transferPKI = transaction.submit(requestStr);
 
 ## تراکنش بروز رسانی شماره حساب کیف رمز پول 
 
-جهت بروز رسانی شماره حساب کیف رمز پول تابع UpdateWalletAccountNumber با نوع Submit فراخوانی می‌شود. این شماره حساب در فرآیند دشارژ و تبدیل رمز پول به ریال مورد استفاده قرار می‌گیرد
+جهت بروز رسانی شماره حساب کیف رمز پول تابع UpdateWalletAccountNumber با نوع Submit فراخوانی می‌شود. این شماره حساب در فرآیند دشارژ و تبدیل رمز پول به ریال مورد استفاده قرار می‌گیرد.
 
  <aside class="content">
 **ساخت userPayload**
@@ -526,11 +523,11 @@ String userPayloadStr = "";
 > **ساخت کیف رمز پول سرور:**
 
 ```java
-UpdateWalletAccountNumber udateWalletAccountNumber = new UpdateWalletAccountNumber()
+UpdateWalletAccountNumber updateWalletAccountNumber = new UpdateWalletAccountNumber()
 			.setWalletId(walletID)
 			.setAccountNumber(accountNumber);
 
-String udateWalletAccountNumberStr = writeValueAsString(udateWalletAccountNumber);
+String updateWalletAccountNumberStr = writeValueAsString(updateWalletAccountNumber);
 ```
 > قطعه کد فوق خروجی زیر را به عنوان مقدار کیف رمز پول **سرور** بصورت String در بر خواهد داشت:
 
@@ -543,7 +540,7 @@ String udateWalletAccountNumberStr = writeValueAsString(udateWalletAccountNumber
 ```java
 ServerPayload serverPayload = new ServerPayload()
 			.setUserPayload(userPayloadStr)
-			.setData(udateWalletAccountNumberStr);
+			.setData(updateWalletAccountNumberStr);
 
 String serverPayloadStr = writeValueAsString(serverPayload);
 ```
@@ -559,8 +556,8 @@ String serverPayloadStr = writeValueAsString(serverPayload);
 
     ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
 --------- | ------- | -----------| ------- | -----------| ------- 
-1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری 
-2 | accountNumber | اجباری | شماره حساب کاربر | رشته کاراکتری 
+1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری
+2 | accountNumber | اجباری | شماره حساب کاربر | رشته کاراکتری
 3 | bornaTxID | اختیاری | شناسه تراکنش در دفتر کل برنا | رشته کاراکتری
 
 <br/>
@@ -630,6 +627,167 @@ final byte[] transferPKI = transaction.submit(requestStr);
 در پاسخ به تراکنش بروز رسانی شماره حساب کیف رمز پول، کیف پول سرور به صورت رشته متنی برگردانده می‌شود. در صورت موفقیت تراکنش، مشخصه bornaTxID برابر با شناسه تراکنش دفتر کل مقداردهی می‌شود.
 </aside> 
 
+## تراکنش دریافت موجودی کیف رمز پول 
+
+جهت دریافت موجودی کیف رمز پول تابع WalletBalance با نوع Evaluate فراخوانی می‌شود.
+
+ <aside class="content">
+**ساخت userPayload**
+ </aside>
+
+> **ساخت کیف رمز پول کاربر:**
+
+```java
+WalletBalance walletBalance = new WalletBalance()
+			.setTokenID(tokenId)
+			.setTokenSymbol(tokenSymbol)
+			.setWalletId(walletID);
+
+String walletBalanceStr = writeValueAsString(walletBalance);
+```
+> قطعه کد فوق خروجی زیر را به عنوان مقدار کیف رمز پول **کاربر** بصورت String در بر خواهد داشت:
+
+```json
+{"tokenID":"شناسه رمز پول","tokenSymbol":"نماد رمز پول","walletID":"شناسه کیف رمز پول"}
+```
+> **ساخت userPayload:**
+
+```java
+UserPayload userPayload = new UserPayload()
+			.setData(walletBalanceStr)
+			.setCert(writeValueAsString(certificate))
+			.setSign(sign(walletBalanceStr));
+
+String userPayloadStr = writeValueAsString(userPayload);
+```
+> قطعه کد فوق خروجی زیر را به عنوان مقدار userPayloadStr بصورت String در بر خواهد داشت:
+
+```json
+{"data":"{\"tokenID\":\"شناسه رمز پول\",\"tokenSymbol\":\"نماد رمز پول\",\"walletID\":\"شناسه کیف رمز پول\"}","sign":"امضا دیجیتال کاربر بر روی فیلد دیتای یوزر پیلود","cert":"گواهی دیجیتال کاربر"}
+```
+مرحله اول در تراکنش دریافت موجودی کیف رمز پول، ساخت قالب userPayload است. قالب userPayload دارای سه فیلد userPayload.data، userPayload.cert و userPayload.sign می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد userPayload.data همان رشته متنی کیف رمز پول کاربر می‌باشد که مشخصه‌های آن در جدول زیر آمده است. نمونه کد مقابل نحوه ساخت کیف رمز پول کاربر را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+
+`مشخصه‌های کیف رمز پول کاربر - userPayload.date`
+
+    ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
+--------- | ------- | -----------| ------- | -----------| ------- 
+1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری
+2 | tokenSymbol | اختیاری | نماد رمز پول | رشته کاراکتری
+3 | tokenIID | اجباری | شناسه رمز پول | رشته کاراکتری
+<br/>
+اکنون رشته متنی کیف رمز پول کاربر که به عنوان فیلد userPayload.data می‌باشد به همراه گواهی دیجیتال کاربر یعنی فیلد userPayload.cert و امضا دیجیتال کاربر یعنی فیلد userPayload.sign که بر روی رشته متنی فیلد userPayload.data انجام شده است، در قالب userPayload قرار می‌گیرد. نمونه کد مقابل نحوه ساخت قالب userPayload را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.   
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+ 
+ <aside class="content">
+**ساخت serverPayload**
+ </aside>
+   
+> **ساخت کیف رمز پول سرور:**
+
+```java
+String serverPayloadData = "";
+```
+
+> **ساخت serverPayload:**
+
+```java
+ServerPayload serverPayload = new ServerPayload()
+			.setUserPayload(userPayloadStr)
+			.setData(serverPayloadData);
+
+String serverPayloadStr = writeValueAsString(serverPayload);
+```
+
+> قطعه کد فوق خروجی زیر را به عنوان مقدار serverPayloadStr بصورت String در بر خواهد داشت:
+
+```json
+{"userPayload":"{\"data\":\"{\\\"tokenID\\\":\\\"شناسه رمز پول\\\",\\\"tokenSymbol\\\":\\\"نماد رمز پول\\\",\\\"walletID\\\":\\\"شناسه کیف رمز پول\\\"}\",\"sign\":\"امضا دیجیتال کاربر بر روی فیلد دیتای یوزر پیلود\",\"cert\":\"گواهی دیجیتال کاربر\"}","data":""}
+```
+مرحله دوم در تراکنش دریافت موجودی کیف رمز پول، ساخت قالب serverPayload است. قالب serverPayload دارای دو فیلد serverPayload.data و serverayload.userPayload می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد serverPayload.data همان رشته متنی کیف رمز پول سرور می‌باشد که در این تراکنش رشته‌ای با مقدار خالی است. نمونه کد مقابل نحوه ساخت کیف رمز پول سرور را نشان می‌دهد.
+
+`مشخصه‌های کیف رمز پول سرور - serverPayload.date`
+
+    ردیف | نام مشخصه | نوع | شرح مشخصه | ساختار 
+--------- | ------- | -----------| ------- | -----------| ------- 
+1 | walletID | اجباری | شناسه کیف رمز پول | رشته 16 کاراکتری
+2 | accountNumber | اجباری | شماره حساب کاربر | رشته کاراکتری
+3 | bornaTxID | اختیاری | شناسه تراکنش در دفتر کل برنا | رشته کاراکتری
+
+<br/>
+اکنون رشته متنی کیف رمز پول سرور که به عنوان فیلد serverPayload.data می‌باشد به همراه قالب userPayload که در بالا تولید شده است، در قالب serverPayload قرار می‌گیرد. نمونه کد مقابل نحوه ساخت قالب serverPayload را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+ 
+ <aside class="content">
+**ساخت Request**
+ </aside>
+
+> **ساخت Request:**
+
+```java
+Request request = new Request()
+			.setServerPayload(serverPayloadStr)
+			.setSign(sign(serverPayloadStr));
+
+String requestStr = writeValueAsString(request);
+```
+
+> قطعه کد فوق خروجی زیر را به عنوان مقدار request بصورت String در بر خواهد داشت:
+
+```json
+{"serverPayload":"{\"userPayload\":\"{\\\"data\\\":\\\"{\\\\\\\"tokenID\\\\\\\":\\\\\\\"شناسه رمز پول\\\\\\\",\\\\\\\"tokenSymbol\\\\\\\":\\\\\\\"نماد رمز پول\\\\\\\",\\\\\\\"walletID\\\\\\\":\\\\\\\"شناسه کیف رمز پول\\\\\\\"}\\\",\\\"sign\\\":\\\"امضا دیجیتال کاربر بر روی فیلد دیتای یوزر پیلود\\\",\\\"cert\\\":\\\"گواهی دیجیتال کاربر\\\"}\",\"data\":\"\"}","sign":""}
+```
+مرحله سوم در تراکنش دریافت موجودی کیف رمز پول، ساخت قالب request است. قالب request دارای دو فیلد request.serverPayload و request.sign می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد request.sign امضا دیجیتال سیستمی بر روی رشته متنی serverPayload تولید شده در بالا می‌باشد. نمونه کد مقابل نحوه ساخت قالب request را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+ 
+ <aside class="content">
+**ارسال تراکنش**
+ </aside>
+ 
+> **ارسال تراکنش:**
+
+```java
+Map<String, byte[]> transientMap = new HashMap<>();
+transientMap.put("srvCert", certificate);
+final org.hyperledger.fabric.gateway.Transaction transaction = org.hyperledger.fabric.gateway.Contract.createTransaction("UpdateWalletType");
+transaction.setTransient(transientMap);
+final byte[] transferPKI = transaction.submit(requestStr);
+```
+مرحله چهارم در تراکنش دریافت موجودی کیف رمز پول، ارسال رشته متنی درخواست تولید شده در بالا برای ثبت بر روی دفتر کل به شبکه بلاک چین برنا می‌باشد. همچنین لازم است گواهی دیجیتال سیستمی بک‌اند به صورت Transient با کلید srvCert نیز ارسال گردد. توجه شود که ارسال تراکنش دریافت موجودی کیف رمز پول به صورت **evaluate** می‌باشد.
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<aside class="success">
+در پاسخ به تراکنش دریافت موجودی کیف رمز پول، مقدار عددی برابر موجودی کیف رمز پول ارسال می‌شود.
+</aside> 
 
 
 
@@ -778,6 +936,15 @@ Parameter | Description
 ID | The ID of the kitten to delete
 
 
+test
+test
+test
+test
+test
+test
+test
+test
+test
 test
 test
 test
