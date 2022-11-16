@@ -410,7 +410,7 @@ userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخی
  </aside></p>
 
 <blockquote>
-<p><strong>ساخت کیف رمز پول کاربر:</strong></p>
+<p><strong>ساخت userPayload.data:</strong></p>
 </blockquote>
 <div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">CreateWalletUP</span> <span class="n">createWalletUP</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CreateWalletUP</span><span class="o">()</span>
             <span class="o">.</span><span class="na">setMobileNo</span><span class="o">(</span><span class="n">mobileNo</span><span class="o">)</span>
@@ -497,7 +497,7 @@ userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخی
  </aside></p>
 
 <blockquote>
-<p><strong>ساخت کیف رمز پول سرور:</strong></p>
+<p><strong>ساخت serverPayload.data:</strong></p>
 </blockquote>
 <div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">CreateWalletSP</span> <span class="n">createWalletSP</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CreateWalletSP</span><span class="o">()</span>
             <span class="o">.</span><span class="na">setWalletId</span><span class="o">(</span><span class="n">walletId</span><span class="o">)</span>
@@ -512,9 +512,9 @@ userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخی
 <span class="nc">String</span> <span class="n">createWalletSPStr</span> <span class="o">=</span> <span class="n">writeValueAsString</span><span class="o">(</span><span class="n">createWalletSP</span><span class="o">);</span>
 </code></pre></div>
 <blockquote>
-<p>قطعه کد فوق خروجی زیر را به عنوان مقدار کیف رمز پول <strong>سرور</strong> بصورت String در بر خواهد داشت:</p>
+<p>قطعه کد فوق خروجی زیر را به عنوان مقدار serverPayloadStr.data بصورت String تولید خواهد کرد:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"mobileNo"</span><span class="p">:</span><span class="s2">"شماره موبایل"</span><span class="p">,</span><span class="nl">"identificationNumber"</span><span class="p">:</span><span class="s2">"شناسه هویتی"</span><span class="p">,</span><span class="nl">"identificationType"</span><span class="p">:</span><span class="s2">"نوع شناسه هویتی"</span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"walletType"</span><span class="p">:</span><span class="s2">"نوع کیف رمز پول"</span><span class="p">,</span><span class="nl">"state"</span><span class="p">:</span><span class="s2">"وضعیت کیف رمز پول"</span><span class="p">,</span><span class="nl">"description"</span><span class="p">:</span><span class="s2">"توضیحات"</span><span class="p">,</span><span class="nl">"certificates"</span><span class="p">:[</span><span class="s2">"لیست گواهی‌های دیجیتال کاربر"</span><span class="p">],</span><span class="nl">"attributes"</span><span class="p">:[</span><span class="err">لیستی</span><span class="w"> </span><span class="err">از</span><span class="w"> </span><span class="err">ویژگی‌ها</span><span class="w"> </span><span class="err">که</span><span class="w"> </span><span class="err">بر</span><span class="w"> </span><span class="err">روی</span><span class="w"> </span><span class="err">کیف</span><span class="w"> </span><span class="err">رمز</span><span class="w"> </span><span class="err">پول</span><span class="w"> </span><span class="err">تعریف</span><span class="w"> </span><span class="err">می‌شود</span><span class="p">],</span><span class="nl">"walletID"</span><span class="p">:</span><span class="s2">"شناسه کیف رمز پول"</span><span class="p">,</span><span class="nl">"enrollmentID"</span><span class="p">:</span><span class="s2">"کد ملی کاربر، شماره پاسپورت اتباع خارجی"</span><span class="p">,</span><span class="nl">"bankID"</span><span class="p">:</span><span class="s2">"شناسه بانک سازنده"</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
 <p><strong>ساخت serverPayload:</strong></p>
@@ -526,12 +526,16 @@ userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخی
 <span class="nc">String</span> <span class="n">serverPayloadStr</span> <span class="o">=</span> <span class="n">writeValueAsString</span><span class="o">(</span><span class="n">serverPayload</span><span class="o">);</span>
 </code></pre></div>
 <blockquote>
-<p>قطعه کد فوق خروجی زیر را به عنوان مقدار serverPayloadStr بصورت String در بر خواهد داشت:</p>
+<p>قطعه کد فوق خروجی زیر را به عنوان مقدار serverPayloadStr بصورت String تولید خواهد کرد:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"userPayload"</span><span class="p">:</span><span class="s2">"{</span><span class="se">\"</span><span class="s2">data</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">mobileNo</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">شماره موبایل</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">identificationNumber</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">شناسه هویتی</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">identificationType</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">نوع شناسه هویتی</span><span class="se">\\\"</span><span class="s2">}</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">sign</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">امضا دیجیتال کاربر بر روی فیلد دیتای یوزر پیلود</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">cert</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">گواهی دیجیتال کاربر</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="nl">"data"</span><span class="p">:</span><span class="s2">"{</span><span class="se">\"</span><span class="s2">walletType</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">نوع کیف رمز پول</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">state</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">وضعیت کیف رمز پول</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">توضیحات</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">certificates</span><span class="se">\"</span><span class="s2">:[</span><span class="se">\"</span><span class="s2">لیست گواهی‌های دیجیتال کاربر</span><span class="se">\"</span><span class="s2">],</span><span class="se">\"</span><span class="s2">attributes</span><span class="se">\"</span><span class="s2">:[</span><span class="se">\"</span><span class="s2">لیستی از ویژگی‌ها که بر روی کیف رمز پول تعریف می‌شود</span><span class="se">\"</span><span class="s2">],</span><span class="se">\"</span><span class="s2">walletID</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">شناسه کیف رمز پول</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">enrollmentID</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">کد ملی کاربر، شماره پاسپورت اتباع خارجی</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">bankID</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">شناسه بانک سازنده</span><span class="se">\"</span><span class="s2">}"</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p style="text-align: justify">
 مرحله دوم در تراکنش ساخت کیف رمز پول، ساخت قالب serverPayload است. قالب serverPayload دارای دو فیلد serverPayload.data و serverayload.userPayload می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. مشخصه‌های فیلد serverPayload.data در جدول زیر آمده است.
+<br/>
+مشخصه enrollmentID برای کاربران عادی (CUSTOMER، CUSTOMER_ELEVATED) برابر کد ملی و یا شماره پاسپورت (اتباع خارجی) می‌باشد. برای کاربران تجاری نیز از کد ملی استفاده می‌گردد.
+<br/>
+توجه شود برای ساخت کیف رمز پول با نوع کیف بانکُ نیازی به ثبت شناسه ملی (و یا هر مشخصه فرد حقیقی) نمی‌باشد، و این پارامتر بنا بر نیاز بانک می‌تواند رشته‌ای از کاراکتر و اعداد در نظر گرفته شود. همچنین محدودیتی در تعداد کیف پول نوع بانک برای یک enrollmentID وجود ندارد.
 <br/>
 نمونه کد مقابل نحوه ساخت کیف رمز پول سرور را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
 </p>
