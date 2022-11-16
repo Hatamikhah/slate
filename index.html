@@ -395,10 +395,10 @@ userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخی
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"serverPayload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">userPayload</span><span class="se">\"</span><span class="s2">:{...},</span><span class="se">\"</span><span class="s2">data</span><span class="se">\"</span><span class="s2">:{...}}"</span><span class="p">,</span><span class="nl">"sign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"serverSignValue"</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p style="text-align: justify">
-در ادامه JsonObject مربوط به userPayload به رشته متنی تبدیل شده و داخل فیلد serverPayload.userPayload قرار می‌گیرد. علاوه بر این، فیلد serverPayload.data نیز داده‌های بک‌اند را نگهداری می‌کند. در نهایت جهت ساخت درخواست بک‌اند مقدار serverPayload را به رشته متنی تبدیل نموده و پس از امضا حاصل را در مقدار sign بک‌اند ذخیره می‌کند. درخواست بک‌اند پس از تبدیل به رشته متنی شدن به شکل مقابل می‌باشد:
+در ادامه JsonObject مربوط به userPayload به رشته متنی تبدیل شده و داخل فیلد serverPayload.userPayload قرار می‌گیرد. علاوه بر این، فیلد serverPayload.data نیز داده‌های بک‌اند را نگهداری می‌کند. در نهایت جهت ساخت درخواست بک‌اند مقدار serverPayload را به رشته متنی تبدیل نموده و پس از امضا حاصل را در مقدار sign بک‌اند ذخیره می‌کند. درخواست بک‌اند پس از تبدیل به رشته متنی به شکل مقابل می‌باشد:
 <br/>
 <br/>
-در زمان ارسال درخواست، مقدار گواهی دیجیتال بک‌اند با کلید srvCert و تحت فرمت Transient ارسال می‌شود. امضا دیجیتال بک‌اند منحصرا توسط گواهی نمادی صورت می‌پذیرد. همچنین تمامی امضاهای دیجیتال (بک‌اند و کاربر) در قالب SHA-256/RSA-2048 انجام می‌شود. سایر ارتباطات و پروتکل‌های مورد استفاده مابین برنامه نرم‌افزار همراه و بک‌اند بنا بر نیازمندی‌های فنی گروه توسعه دهنده، طراحی و اجرا می‌گردد و تنها قید لازم دریافت امضا کاربر بر روی اقلام اطلاعاتی با قالب تعریف شده می‌باشد.
+مقدار گواهی دیجیتال بک‌اند در زمان فراخوانی قرارداد هوشمند با کلید srvCert و تحت فرمت Transient ارسال می‌شود. امضا دیجیتال بک‌اند منحصرا توسط گواهی نمادی صورت می‌پذیرد. همچنین تمامی امضاهای دیجیتال (بک‌اند و کاربر) در قالب SHA-256/RSA-2048 انجام می‌شود. سایر ارتباطات و پروتکل‌های مورد استفاده مابین برنامه نرم‌افزار همراه و بک‌اند بنا بر نیازمندی‌های فنی گروه توسعه دهنده، طراحی و اجرا می‌گردد و تنها قید لازم دریافت امضا کاربر بر روی اقلام اطلاعاتی با قالب تعریف شده می‌باشد.
 <br/>
 توجه شود استاندارد زمان در سامانه برنا بر مبنای UTC می‌باشد، لذا در زمان خواندن بلوک‌های دفتر کل و تهیه گزارشات این استاندارد زمانی مد نظر قرار گیرد.
 <br/>
@@ -644,8 +644,11 @@ userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخی
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"serverPayload"</span><span class="p">:</span><span class="s2">"{</span><span class="se">\"</span><span class="s2">userPayload</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">data</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">{</span><span class="se">\\\\\\\"</span><span class="s2">mobileNo</span><span class="se">\\\\\\\"</span><span class="s2">:</span><span class="se">\\\\\\\"</span><span class="s2">شماره موبایل</span><span class="se">\\\\\\\"</span><span class="s2">,</span><span class="se">\\\\\\\"</span><span class="s2">identificationNumber</span><span class="se">\\\\\\\"</span><span class="s2">:</span><span class="se">\\\\\\\"</span><span class="s2">شناسه هویتی</span><span class="se">\\\\\\\"</span><span class="s2">,</span><span class="se">\\\\\\\"</span><span class="s2">identificationType</span><span class="se">\\\\\\\"</span><span class="s2">:</span><span class="se">\\\\\\\"</span><span class="s2">نوع شناسه هویتی</span><span class="se">\\\\\\\"</span><span class="s2">}</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">sign</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">امضا دیجیتال کاربر بر روی فیلد دیتای یوزر پیلود</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">cert</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">گواهی دیجیتال کاربر</span><span class="se">\\\"</span><span class="s2">}</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">data</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">walletType</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">نوع کیف رمز پول</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">state</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">وضعیت کیف رمز پول</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">description</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">توضیحات</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">certificates</span><span class="se">\\\"</span><span class="s2">:[</span><span class="se">\\\"</span><span class="s2">لیست گواهی‌های دیجیتال کاربر</span><span class="se">\\\"</span><span class="s2">],</span><span class="se">\\\"</span><span class="s2">attributes</span><span class="se">\\\"</span><span class="s2">:[</span><span class="se">\\\"</span><span class="s2">لیستی از ویژگی‌ها که بر روی کیف رمز پول تعریف می‌شود</span><span class="se">\\\"</span><span class="s2">],</span><span class="se">\\\"</span><span class="s2">walletID</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">شناسه کیف رمز پول</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">enrollmentID</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">کد ملی کاربر، شماره پاسپورت اتباع خارجی</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">bankID</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">شناسه بانک سازنده</span><span class="se">\\\"</span><span class="s2">}</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="nl">"sign"</span><span class="p">:</span><span class="s2">"امضا دیجیتال بک‌اند بر روی رشته متنی سرور پیلود"</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>مرحله سوم در تراکنش ساخت کیف رمز پول، ساخت قالب request است. قالب request دارای دو فیلد request.serverPayload و request.sign می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد request.sign امضا دیجیتال بک‌اند بر روی رشته متنی serverPayload تولید شده در بالا می‌باشد. نمونه کد مقابل نحوه ساخت قالب request را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
-<br/>
+<p style="text-align: justify">
+مرحله سوم در تراکنش ساخت کیف رمز پول، ساخت قالب request است. قالب request دارای دو فیلد request.serverPayload و request.sign می‌باشد که شرح آن در بخش قالب ارسال ارایه شده است. فیلد request.sign امضا دیجیتال بک‌اند بر روی رشته متنی serverPayload تولید شده در بالا می‌باشد. نمونه کد مقابل نحوه ساخت قالب request را نشان می‌دهد که لازم است در انتها به رشته متنی تبدیل شود.
+</p>
+
+<p><br/>
 <br/>
 <br/>
 <br/>
@@ -670,16 +673,21 @@ userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخی
 <span class="n">transaction</span><span class="o">.</span><span class="na">setTransient</span><span class="o">(</span><span class="n">transientMap</span><span class="o">);</span>
 <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">transferPKI</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="n">requestStr</span><span class="o">);</span>
 </code></pre></div>
-<p>مرحله چهارم در تراکنش ساخت کیف رمز پول، ارسال رشته متنی درخواست تولید شده در بالا برای ثبت بر روی دفتر کل به شبکه بلاک چین برنا می‌باشد. همچنین لازم است گواهی دیجیتال بک‌اند به صورت Transient با کلید srvCert نیز ارسال گردد. توجه شود که ارسال تراکنش ساخت کیف رمز پول به صورت <strong>submit</strong> می‌باشد.
+<p style="text-align: justify">
+مرحله چهارم در تراکنش ساخت کیف رمز پول، ارسال رشته متنی درخواست تولید شده در بالا برای ثبت بر روی دفتر کل به شبکه بلاک چین برنا می‌باشد. همچنین لازم است گواهی دیجیتال بک‌اند به صورت Transient با کلید srvCert نیز ارسال گردد. توجه شود که ارسال تراکنش ساخت کیف رمز پول به صورت **submit** می‌باشد.
+</p>
+
+<p><br/>
 <br/>
 <br/>
 <br/>
 <br/>
 <br/>
-<br/>
+<p style="text-align: justify">
 <aside class="success">
 در پاسخ به تراکنش ساخت کیف رمز پول، کیف پول سرور به صورت رشته برگردانده می‌شود. در صورت موفقیت تراکنش، مشخصه bornaTxID برابر با شناسه تراکنش دفتر کل مقداردهی می‌شود.
-</aside> </p>
+</aside>
+</p></p>
 <h2 id='0dcea4d273'>تراکنش بروز رسانی گواهی دیجیتال کاربر</h2>
 <p>جهت بروز رسانی گواهی‌های دیجیتال کاربر تابع UpdateWalletCertificate با نوع Submit فراخوانی می‌شود.</p>
 
