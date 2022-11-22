@@ -786,6 +786,25 @@ userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخی
 <br/></p>
 
 <p><aside class="content">
+<strong>رمزنگاری userPayloadStr</strong>
+ </aside></p>
+
+<blockquote>
+<p><strong>رمزنگاری userPayloadStr:</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="kt">byte</span><span class="o">[]&gt;</span> <span class="n">transientMap</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="n">transientMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"srvCert"</span><span class="o">,</span> <span class="n">certificate</span><span class="o">);</span>
+<span class="kd">final</span> <span class="n">org</span><span class="o">.</span><span class="na">hyperledger</span><span class="o">.</span><span class="na">fabric</span><span class="o">.</span><span class="na">gateway</span><span class="o">.</span><span class="na">Transaction</span> <span class="n">transaction</span> <span class="o">=</span> <span class="n">org</span><span class="o">.</span><span class="na">hyperledger</span><span class="o">.</span><span class="na">fabric</span><span class="o">.</span><span class="na">gateway</span><span class="o">.</span><span class="na">Contract</span><span class="o">.</span><span class="na">createTransaction</span><span class="o">(</span><span class="s">"CreateWallet"</span><span class="o">);</span>
+<span class="n">transaction</span><span class="o">.</span><span class="na">setTransient</span><span class="o">(</span><span class="n">transientMap</span><span class="o">);</span>
+<span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">transferPKI</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="n">requestStr</span><span class="o">);</span>
+</code></pre></div>
+<p style="text-align: justify">
+مرحله چهارم در تراکنش ساخت کیف رمز پول، ارسال رشته متنی درخواست تولید شده در بالا برای ثبت بر روی دفتر کل به شبکه بلاک چین برنا می‌باشد. همچنین لازم است گواهی دیجیتال بک‌اند به صورت Transient با کلید srvCert نیز ارسال گردد. توجه شود که ارسال تراکنش ساخت کیف رمز پول به صورت Submit می‌باشد.
+</p>
+
+<p><br/></p>
+
+<p><aside class="content">
 <strong>ساخت serverPayload</strong>
  </aside></p>
 
@@ -795,7 +814,6 @@ userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخی
 <div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">CreateWalletSP</span> <span class="n">createWalletSP</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CreateWalletSP</span><span class="o">()</span>
             <span class="o">.</span><span class="na">setWalletId</span><span class="o">(</span><span class="n">walletId</span><span class="o">)</span>
             <span class="o">.</span><span class="na">setWalletType</span><span class="o">(</span><span class="n">walletType</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">setEnrollmentId</span><span class="o">(</span><span class="n">identification</span><span class="o">)</span>
             <span class="o">.</span><span class="na">setState</span><span class="o">(</span><span class="no">NORMAL</span><span class="o">)</span>
             <span class="o">.</span><span class="na">setBankId</span><span class="o">(</span><span class="n">bankId</span><span class="o">)</span>
             <span class="o">.</span><span class="na">setDescription</span><span class="o">(</span><span class="n">description</span><span class="o">)</span>
@@ -860,48 +878,41 @@ userPayload.sign: امضا دیجیتال کاربر در این فیلد ذخی
 </tr>
 <tr>
 <td>3</td>
-<td>enrollmentID</td>
-<td>اجباری</td>
-<td>کد ملی کاربر، شماره پاسپورت اتباع خارجی</td>
-<td>رشته کاراکتری</td>
-</tr>
-<tr>
-<td>4</td>
 <td>state</td>
 <td>اختیاری</td>
 <td>وضعیت کیف رمز پول</td>
 <td>رشته کاراکتری</td>
 </tr>
 <tr>
-<td>5</td>
+<td>4</td>
 <td>attributes</td>
 <td>اختیاری</td>
 <td>لیستی از ویژگی‌هاکه بر روی کیف رمز پول تعریف می‌شود</td>
 <td>رشته کاراکتری</td>
 </tr>
 <tr>
-<td>6</td>
+<td>5</td>
 <td>bankID</td>
 <td>اجباری</td>
 <td>شناسه بانک سازنده</td>
 <td>رشته 2 رقمی</td>
 </tr>
 <tr>
-<td>7</td>
+<td>6</td>
 <td>certificates</td>
 <td>اجباری</td>
 <td>لیست گواهی‌های دیجیتال کاربر</td>
 <td>رشته کاراکتری</td>
 </tr>
 <tr>
-<td>8</td>
+<td>7</td>
 <td>description</td>
 <td>اختیاری</td>
 <td>توضیحات</td>
 <td>رشته کاراکتری</td>
 </tr>
 <tr>
-<td>9</td>
+<td>8</td>
 <td>bornaTxID</td>
 <td>اختیاری</td>
 <td>شناسه تراکنش در دفتر کل برنا</td>
